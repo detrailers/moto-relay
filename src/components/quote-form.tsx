@@ -4,24 +4,10 @@ import { useId, useState } from "react";
 import { VEHICLE_TYPES } from "@/lib/site";
 import { Button } from "@/components/button";
 import { cn } from "@/lib/cn";
+import { validateStepOne, validateStepTwo, type QuoteFormData, type YesNo, type Transport } from "@/lib/quote-validation";
 
-type YesNo = "yes" | "no" | "";
-type Transport = "open" | "enclosed" | "both" | "";
-
-type FormState = {
-  pickup: string;
-  delivery: string;
-  vehicleType: string;
-  year: string;
-  make: string;
-  model: string;
-  runs: YesNo;
-  rolls: YesNo;
-  transport: Transport;
-  name: string;
-  phone: string;
-  email: string;
-};
+type FormState = QuoteFormData;
+type Errors = Partial<Record<keyof FormState, string>>;
 
 const initialState: FormState = {
   pickup: "",
@@ -38,30 +24,6 @@ const initialState: FormState = {
   email: "",
 };
 
-type Errors = Partial<Record<keyof FormState, string>>;
-
-function validateStepOne(data: FormState): Errors {
-  const errors: Errors = {};
-  if (!data.pickup.trim()) errors.pickup = "Enter a pickup ZIP code or city and state.";
-  if (!data.delivery.trim()) errors.delivery = "Enter a delivery ZIP code or city and state.";
-  if (!data.vehicleType) errors.vehicleType = "Select a vehicle type.";
-  if (!/^(19|20)\d{2}$/.test(data.year.trim())) errors.year = "Enter a valid 4-digit year.";
-  if (!data.make.trim()) errors.make = "Enter the make.";
-  if (!data.model.trim()) errors.model = "Enter the model.";
-  if (!data.runs) errors.runs = "Let us know if it runs.";
-  if (!data.rolls) errors.rolls = "Let us know if it rolls.";
-  if (!data.transport) errors.transport = "Choose a transport preference.";
-  return errors;
-}
-
-function validateStepTwo(data: FormState): Errors {
-  const errors: Errors = {};
-  if (!data.name.trim()) errors.name = "Enter your name.";
-  if (!/^[\d()+\-.\s]{7,}$/.test(data.phone.trim())) errors.phone = "Enter a valid phone number.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) errors.email = "Enter a valid email address.";
-  return errors;
-}
-
 const radioBase =
   "flex-1 cursor-pointer rounded-md border border-form-border bg-form-input px-4 py-2.5 text-center text-sm font-semibold text-form-foreground transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent has-[:checked]:text-accent-foreground";
 
@@ -73,6 +35,11 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
   const [data, setData] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
+  // Hidden honeypot — real visitors never see or fill this in. Kept out of
+  // FormState since it isn't a real business field.
+  const [website, setWebsite] = useState("");
   const formId = useId();
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
@@ -87,13 +54,31 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
     if (Object.keys(stepOneErrors).length === 0) setStep(2);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const stepTwoErrors = validateStepTwo(data);
     setErrors(stepTwoErrors);
-    // No backend is connected yet — this only validates and confirms the
-    // frontend workflow. Nothing is sent anywhere.
-    if (Object.keys(stepTwoErrors).length === 0) setSubmitted(true);
+    if (Object.keys(stepTwoErrors).length > 0) return;
+
+    setSending(true);
+    setSendError(null);
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, website }),
+      });
+      const result: { ok: boolean } = await res.json();
+      if (res.ok && result.ok) {
+        setSubmitted(true);
+      } else {
+        setSendError("We couldn't send your quote request. Please try again.");
+      }
+    } catch {
+      setSendError("We couldn't send your quote request. Check your connection and try again.");
+    } finally {
+      setSending(false);
+    }
   }
 
   if (submitted) {
@@ -101,11 +86,10 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
       <div role="status" className="relative overflow-hidden rounded-2xl border border-accent bg-form-surface p-8 text-center shadow-2xl shadow-black/50">
         <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-accent" />
         <h3 className="font-heading text-xl font-bold uppercase tracking-wide text-form-foreground">
-          Quote request captured
+          Quote request sent
         </h3>
         <p className="mt-3 text-sm text-form-muted">
-          This is a frontend placeholder — form submission is not yet connected to email, SMS or a database.
-          No quote request has actually been sent.
+          Thanks — we&apos;ve received your quote request and will follow up by phone, text, or email.
         </p>
       </div>
     );
@@ -316,11 +300,35 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
             </Field>
           </div>
 
+          {/* Honeypot — hidden from real visitors and screen readers, left
+              in the tab order nowhere. Bots that auto-fill every field trip
+              it; the server silently no-ops when it's filled in. */}
+          <div aria-hidden="true" className="hidden">
+            <label htmlFor={`${formId}-website`}>Website</label>
+            <input
+              id={`${formId}-website`}
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            />
+          </div>
+
+          {sendError && (
+            <p role="alert" className="text-sm font-medium text-form-error">
+              {sendError}
+            </p>
+          )}
+
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center">
-            <Button type="button" variant="secondary-on-light" onClick={() => setStep(1)}>
+            <Button type="button" variant="secondary-on-light" onClick={() => setStep(1)} disabled={sending}>
               Back
             </Button>
-            <Button type="submit">Get My Quote</Button>
+            <Button type="submit" disabled={sending}>
+              {sending ? "Sending…" : "Get My Quote"}
+            </Button>
           </div>
         </form>
       )}

@@ -20,7 +20,7 @@ const VEHICLES: Record<string, { src: string; label: string }> = {
 const TRUST = [
   { icon: "▰", title: "Open & Enclosed", sub: "Transport" },
   { icon: "◆", title: "Lower 48", sub: "Nationwide Service" },
-  { icon: "▲", title: "Alaska", sub: "Available" },
+  { icon: "✓", title: "Insurance Included", sub: "Every Shipment" },
   { icon: "✦", title: "Real People", sub: "Who Ride" },
 ];
 
@@ -61,7 +61,7 @@ export default function HomePage() {
               <span className="block text-accent">Shipping</span>
             </h1>
             <p className="mt-7 max-w-xl text-base font-medium leading-relaxed text-white/78 sm:text-xl">
-              Specialized transportation for motorcycles, ATVs, UTVs and trikes—across the lower 48, with Alaska service available.
+              Specialized transportation for motorcycles, ATVs, UTVs and trikes—across the lower 48 United States.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="#quote" className="min-w-52 py-4 text-base shadow-[0_12px_35px_rgba(255,106,19,.25)]">Get My Quote</Button>

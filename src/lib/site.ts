@@ -22,15 +22,16 @@ export const site = {
   // Approved primary positioning line — used for the homepage <title> and as
   // the sitewide default title fallback.
   positioning: "Nationwide Motorcycle & Powersports Shipping",
-  // Placeholder-quality description only. Not final marketing copy — flagged
-  // for owner review before this goes live.
   description:
-    "Specialized transportation for motorcycles, ATVs, UTVs and trikes across the lower 48, with Alaska service available.",
+    "Specialized transportation for motorcycles, ATVs, UTVs and trikes across the lower 48 United States.",
   // Single source of truth for the owner-approved phone number. Every
   // component that calls/texts reads from here.
   phone: "(940) 268-1060",
   phoneHref: "tel:+19402681060",
   smsHref: `sms:+19402681060?body=${encodeURIComponent(SMS_PREFILL)}`,
+  // Public and quote-recipient email — owner-approved.
+  email: "motorelaytransport@gmail.com",
+  emailHref: "mailto:motorelaytransport@gmail.com",
 };
 
 export type VehicleType = {

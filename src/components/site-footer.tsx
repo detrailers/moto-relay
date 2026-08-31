@@ -10,6 +10,18 @@ export function SiteFooter() {
           <div>
             <Wordmark />
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">{site.description}</p>
+            <ul className="mt-4 space-y-1.5">
+              <li>
+                <a href={site.emailHref} className="text-sm text-foreground hover:text-accent">
+                  {site.email}
+                </a>
+              </li>
+              <li>
+                <a href={site.phoneHref} className="text-sm text-foreground hover:text-accent">
+                  {site.phone}
+                </a>
+              </li>
+            </ul>
           </div>
 
           <div>
