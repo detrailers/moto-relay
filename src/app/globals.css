@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #08080a;
+  --surface: #151517;
+  --surface-2: #1e1e22;
+  --foreground: #f7f7f6;
+  --muted-foreground: #9a9aa0;
+  --border: #2a2a30;
+  --border-strong: #38383f;
+  --accent: #ff6a13;
+  --accent-hover: #e85e0e;
+  --accent-foreground: #0b0b0c;
+  --accent-soft: rgba(255, 106, 19, 0.12);
+  --focus-ring: #ff9a5c;
+  /* Light form surface used only inside the quote-form card. */
+  --form-surface: #f4f3f1;
+  --form-input: #ffffff;
+  --form-foreground: #16161a;
+  --form-muted: #6b6b70;
+  --form-border: #d9d7d3;
+  /* Darker than --accent so error text stays AA-readable on the light card. */
+  --form-error: #c2410c;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-focus-ring: var(--focus-ring);
+  --color-form-surface: var(--form-surface);
+  --color-form-input: var(--form-input);
+  --color-form-foreground: var(--form-foreground);
+  --color-form-muted: var(--form-muted);
+  --color-form-border: var(--form-border);
+  --color-form-error: var(--form-error);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-oswald);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Consistent, visible focus state for keyboard users on every interactive element. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Faint diagonal texture for "black" sections — an industrial cue without a
+   real texture image. Extremely low opacity by design. */
+.texture-diagonal {
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+}
+
+/* Thin, angled accent lines used near the wordmark and section kickers. */
+.speed-lines {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+  transform: skewX(-12deg);
+}
+.speed-lines span {
+  display: block;
+  height: 2px;
+  background: var(--accent);
 }
