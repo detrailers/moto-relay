@@ -65,7 +65,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="#quote" className="min-w-52 py-4 text-base shadow-[0_12px_35px_rgba(255,106,19,.25)]">Get My Quote</Button>
-              <Button href={site.smsHref} variant="secondary" className="min-w-52 border-white/30 bg-black/25 py-4 text-base backdrop-blur">Text for a Quote</Button>
+              <Button href={site.smsHref} variant="contact" className="min-w-52 py-4 text-base backdrop-blur">Text for a Quote</Button>
             </div>
           </div>
         </div>
@@ -174,11 +174,12 @@ export default function HomePage() {
           <div className="max-w-lg text-right">
             <p className="text-xs font-black uppercase tracking-[.26em] text-accent">From coast to coast</p>
             <h2 className="mt-3 font-heading text-5xl font-black uppercase leading-[.95] text-white sm:text-7xl">We’ll Get Your Bike There.</h2>
-            <div className="mt-7 flex justify-end gap-3">
+            <div className="mt-7 flex flex-col justify-end gap-3 sm:flex-row sm:flex-wrap">
               <Button href="#quote">Get My Quote</Button>
-              <Button href={site.smsHref} variant="secondary" className="border-white/30 bg-black/30">Text Us</Button>
+              <Button href={site.smsHref} variant="contact" className="px-7 py-3.5 text-base">Text Us</Button>
+              <Button href={site.phoneHref} variant="contact" className="px-7 py-3.5 text-base">Call Now</Button>
             </div>
-            <a href={site.phoneHref} className="mt-5 inline-block text-sm font-bold tracking-wide text-white/70">Call or text {site.phone}</a>
+            <a href={site.phoneHref} className="mt-5 inline-block text-base font-black tracking-wide text-white hover:text-accent">Call or text {site.phone}</a>
           </div>
         </div>
       </section>

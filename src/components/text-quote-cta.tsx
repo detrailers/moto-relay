@@ -59,7 +59,7 @@ export function TextQuoteCta() {
             </p>
           </div>
           {smsHref ? (
-            <Button href={smsHref} variant="primary" className="w-full sm:w-auto">
+            <Button href={smsHref} variant="primary" className="w-full px-8 py-4 text-base shadow-[0_10px_28px_rgba(255,106,19,.24)] sm:w-auto">
               Text for a Quote
             </Button>
           ) : (
@@ -71,14 +71,14 @@ export function TextQuoteCta() {
               clickable number — tel: links work wherever a calling app is
               registered, and the digits are visible regardless. */}
           {phone && (
-            <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
-              <PhoneIcon className="size-3.5 shrink-0 text-accent" />
+            <p className="flex w-full items-center sm:justify-end">
               {phoneHref ? (
-                <a href={phoneHref} className="font-semibold text-foreground hover:text-accent">
-                  {phone}
+                <a href={phoneHref} className="inline-flex w-full items-center justify-center gap-2 rounded-md border-2 border-accent px-6 py-3 text-base font-black text-accent transition-colors hover:bg-accent hover:text-black sm:w-auto">
+                  <PhoneIcon className="size-4 shrink-0" />
+                  Call {phone}
                 </a>
               ) : (
-                <span className="font-semibold text-foreground">{phone}</span>
+                <span className="text-base font-black text-foreground">{phone}</span>
               )}
             </p>
           )}

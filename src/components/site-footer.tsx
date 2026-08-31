@@ -17,8 +17,8 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href={site.phoneHref} className="text-sm text-foreground hover:text-accent">
-                  {site.phone}
+                <a href={site.phoneHref} className="inline-flex rounded-md border border-accent px-3 py-2 text-sm font-bold text-accent transition-colors hover:bg-accent hover:text-black">
+                  Call {site.phone}
                 </a>
               </li>
             </ul>
