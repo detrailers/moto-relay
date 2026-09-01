@@ -48,6 +48,26 @@ export default function Page() {
 
       <section className="space-y-3">
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
+          Website analytics and cookies
+        </h2>
+        <p>
+          We use Google Analytics to understand how visitors find and use this website. Google Analytics may
+          collect information such as pages viewed, general location, device and browser information, and how
+          visitors interact with the site using cookies or similar technologies. We use this information to
+          measure site performance and improve our services. Learn more about how Google uses information from
+          sites that use its services at{" "}
+          <a
+            href="https://policies.google.com/technologies/partner-sites"
+            className="font-semibold text-accent hover:underline"
+          >
+            Google&apos;s partner-sites privacy page
+          </a>
+          .
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
           How we protect information
         </h2>
         <p>

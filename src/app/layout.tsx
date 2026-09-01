@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -76,6 +77,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${oswald.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-background text-foreground antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XRMMCCNC97"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XRMMCCNC97');`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
