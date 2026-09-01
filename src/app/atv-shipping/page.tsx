@@ -16,7 +16,7 @@ export default function Page() {
       title="ATV Shipping"
       intro="Nationwide ATV shipping — open and enclosed transport, across the lower 48."
     >
-      <VehicleServiceBody vehicleLabel="ATV" vehiclePlural="ATVs" />
+      <VehicleServiceBody vehicleLabel="ATV" vehiclePlural="ATVs" slug="atv-shipping" />
     </ContentPageLayout>
   );
 }

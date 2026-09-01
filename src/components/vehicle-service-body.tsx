@@ -1,4 +1,5 @@
 import { Button } from "@/components/button";
+import { site } from "@/lib/site";
 
 // Shared body content for the four vehicle-type service pages. The four
 // pages differ only in vehicle wording, so this keeps that content in one
@@ -6,13 +7,28 @@ import { Button } from "@/components/button";
 export function VehicleServiceBody({
   vehicleLabel,
   vehiclePlural,
+  slug,
 }: {
   /** Mid-sentence singular form, already cased correctly (e.g. "motorcycle", "ATV"). */
   vehicleLabel: string;
   vehiclePlural: string;
+  slug: string;
 }) {
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${site.url}/${slug}#service`,
+    name: `${vehicleLabel === "motorcycle" ? "Motorcycle" : vehicleLabel} Shipping`,
+    description: `Open and enclosed ${vehicleLabel} shipping across the lower 48 United States. Running and non-running vehicles are accepted as long as they roll.`,
+    url: `${site.url}/${slug}`,
+    areaServed: "Lower 48 United States",
+    provider: { "@id": `${site.url}/#organization` },
+    serviceType: `${vehicleLabel === "motorcycle" ? "Motorcycle" : vehicleLabel} shipping`,
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <section className="space-y-3">
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
           What this service covers

@@ -16,7 +16,7 @@ export default function Page() {
       title="Trike Shipping"
       intro="Nationwide trike shipping — open and enclosed transport, across the lower 48."
     >
-      <VehicleServiceBody vehicleLabel="trike" vehiclePlural="trikes" />
+      <VehicleServiceBody vehicleLabel="trike" vehiclePlural="trikes" slug="trike-shipping" />
     </ContentPageLayout>
   );
 }

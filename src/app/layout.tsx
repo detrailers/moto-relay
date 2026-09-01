@@ -8,14 +8,28 @@ import { site } from "@/lib/site";
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const oswald = Oswald({ variable: "--font-oswald", subsets: ["latin"], weight: ["500", "600", "700"] });
 
-// Safe, sitewide-only schema. No address/phone/social profiles — none are
-// confirmed yet, and inventing placeholders here would publish false claims.
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${site.url}/#organization`,
   name: site.name,
   url: site.url,
+  logo: `${site.url}/images/moto-relay-logo.png`,
   description: site.description,
+  email: site.email,
+  telephone: "+1-940-268-1060",
+  areaServed: "Lower 48 United States",
+  parentOrganization: {
+    "@type": "Organization",
+    name: site.parentCompany,
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    telephone: "+1-940-268-1060",
+    email: site.email,
+    availableLanguage: "English",
+  },
 };
 
 const websiteJsonLd = {
@@ -23,6 +37,7 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: site.name,
   url: site.url,
+  publisher: { "@id": `${site.url}/#organization` },
 };
 
 export const metadata: Metadata = {
@@ -40,9 +55,20 @@ export const metadata: Metadata = {
     title: `${site.name} — ${site.positioning}`,
     description: site.description,
     url: site.url,
+    images: [
+      {
+        url: "/images/moto-relay-social-share.png",
+        width: 1733,
+        height: 909,
+        alt: "Moto Relay nationwide motorcycle and powersports shipping",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    title: `${site.name} — ${site.positioning}`,
+    description: site.description,
+    images: ["/images/moto-relay-social-share.png"],
   },
 };
 

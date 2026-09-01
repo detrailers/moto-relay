@@ -16,7 +16,7 @@ export default function Page() {
       title="Motorcycle Shipping"
       intro="Nationwide motorcycle shipping — open and enclosed transport, across the lower 48."
     >
-      <VehicleServiceBody vehicleLabel="motorcycle" vehiclePlural="motorcycles" />
+      <VehicleServiceBody vehicleLabel="motorcycle" vehiclePlural="motorcycles" slug="motorcycle-shipping" />
     </ContentPageLayout>
   );
 }

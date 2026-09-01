@@ -9,8 +9,22 @@ export const metadata: Metadata = {
 };
 
 export default function FaqPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <p className="text-xs font-bold uppercase tracking-widest text-accent">Support</p>
       <h1 className="mt-2 font-heading text-3xl font-bold uppercase tracking-wide text-foreground sm:text-4xl">
         Motorcycle Shipping FAQ
