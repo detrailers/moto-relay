@@ -66,6 +66,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="#quote" className="min-w-52 py-4 text-base shadow-[0_12px_35px_rgba(255,106,19,.25)]">Get My Quote</Button>
               <Button href={site.smsHref} variant="contact" className="min-w-52 py-4 text-base backdrop-blur md:hidden">Text for a Quote</Button>
+              <Button href={site.phoneHref} variant="contact" className="min-w-52 py-4 text-base backdrop-blur md:hidden">Call Now</Button>
               <Button href={site.emailHref} variant="contact" className="!hidden min-w-52 py-4 text-base backdrop-blur md:!inline-flex">Email for a Quote</Button>
             </div>
           </div>
