@@ -65,7 +65,8 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="#quote" className="min-w-52 py-4 text-base shadow-[0_12px_35px_rgba(255,106,19,.25)]">Get My Quote</Button>
-              <Button href={site.smsHref} variant="contact" className="min-w-52 py-4 text-base backdrop-blur">Text for a Quote</Button>
+              <Button href={site.smsHref} variant="contact" className="min-w-52 py-4 text-base backdrop-blur md:hidden">Text for a Quote</Button>
+              <Button href={site.emailHref} variant="contact" className="!hidden min-w-52 py-4 text-base backdrop-blur md:!inline-flex">Email for a Quote</Button>
             </div>
           </div>
         </div>
@@ -176,10 +177,12 @@ export default function HomePage() {
             <h2 className="mt-3 font-heading text-5xl font-black uppercase leading-[.95] text-white sm:text-7xl">We’ll Get Your Bike There.</h2>
             <div className="mt-7 flex flex-col justify-end gap-3 sm:flex-row sm:flex-wrap">
               <Button href="#quote">Get My Quote</Button>
-              <Button href={site.smsHref} variant="contact" className="px-7 py-3.5 text-base">Text Us</Button>
-              <Button href={site.phoneHref} variant="contact" className="px-7 py-3.5 text-base">Call Now</Button>
+              <Button href={site.smsHref} variant="contact" className="px-7 py-3.5 text-base md:hidden">Text Us</Button>
+              <Button href={site.phoneHref} variant="contact" className="px-7 py-3.5 text-base md:hidden">Call Now</Button>
+              <Button href={site.emailHref} variant="contact" className="!hidden px-7 py-3.5 text-base md:!inline-flex">Email Us</Button>
             </div>
-            <a href={site.phoneHref} className="mt-5 inline-block text-base font-black tracking-wide text-white hover:text-accent">Call or text {site.phone}</a>
+            <a href={site.phoneHref} className="mt-5 inline-block text-base font-black tracking-wide text-white hover:text-accent md:hidden">Call or text {site.phone}</a>
+            <p className="mt-5 hidden text-base font-black tracking-wide text-white md:block">Call or text {site.phone} from your phone</p>
           </div>
         </div>
       </section>

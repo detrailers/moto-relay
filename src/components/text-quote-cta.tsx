@@ -15,7 +15,7 @@ const TEXT_CHECKLIST = [
 // owner-approved number. If that ever goes back to null (number pulled),
 // this renders a disabled, clearly-labeled placeholder instead of a dead link.
 export function TextQuoteCta() {
-  const { smsHref, phone, phoneHref } = site;
+  const { smsHref, phone, phoneHref, emailHref } = site;
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-border bg-surface-2 pl-6 sm:pl-8">
@@ -25,11 +25,13 @@ export function TextQuoteCta() {
           <div className="flex items-center gap-2.5">
             <MessageIcon className="size-5 text-accent" />
             <h2 className="font-heading text-xl font-bold uppercase tracking-wide text-foreground sm:text-2xl">
-              Prefer to text?
+              <span className="md:hidden">Prefer to text?</span>
+              <span className="hidden md:inline">Prefer email?</span>
             </h2>
           </div>
           <p className="mt-2 text-sm text-muted-foreground">
-            Text us the details and we&apos;ll get your quote started:
+            <span className="md:hidden">Text us the details and we&apos;ll get your quote started:</span>
+            <span className="hidden md:inline">Email us the details and we&apos;ll get your quote started:</span>
           </p>
           <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-muted-foreground">
             {TEXT_CHECKLIST.map((item) => (
@@ -43,7 +45,7 @@ export function TextQuoteCta() {
         <div className="flex flex-col items-start gap-4 border-t border-border pt-6 sm:items-end sm:border-t-0 sm:border-l sm:border-border sm:pl-8 sm:pt-0">
           {/* CSS-only preview of the pre-filled text — no real customer data,
               just the same blank template used in the actual SMS link. */}
-          <div className="w-full max-w-[220px] rounded-xl border border-border-strong bg-background/60 p-3 shadow-inner sm:ml-auto">
+          <div className="w-full max-w-[220px] rounded-xl border border-border-strong bg-background/60 p-3 shadow-inner sm:ml-auto md:hidden">
             <div className="flex items-center gap-1.5 border-b border-border pb-2">
               <span className="size-1.5 rounded-full bg-accent" />
               <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
@@ -59,7 +61,7 @@ export function TextQuoteCta() {
             </p>
           </div>
           {smsHref ? (
-            <Button href={smsHref} variant="primary" className="w-full px-8 py-4 text-base shadow-[0_10px_28px_rgba(255,106,19,.24)] sm:w-auto">
+            <Button href={smsHref} variant="primary" className="w-full px-8 py-4 text-base shadow-[0_10px_28px_rgba(255,106,19,.24)] sm:w-auto md:hidden">
               Text for a Quote
             </Button>
           ) : (
@@ -67,19 +69,20 @@ export function TextQuoteCta() {
               Text for a Quote
             </Button>
           )}
-          {/* Desktops that can't hand off to an SMS app still see a real,
-              clickable number — tel: links work wherever a calling app is
-              registered, and the digits are visible regardless. */}
+          <Button href={emailHref} variant="primary" className="!hidden px-8 py-4 text-base shadow-[0_10px_28px_rgba(255,106,19,.24)] md:!inline-flex">
+            Email for a Quote
+          </Button>
           {phone && (
             <p className="flex w-full items-center sm:justify-end">
               {phoneHref ? (
-                <a href={phoneHref} className="inline-flex w-full items-center justify-center gap-2 rounded-md border-2 border-accent px-6 py-3 text-base font-black text-accent transition-colors hover:bg-accent hover:text-black sm:w-auto">
+                <a href={phoneHref} className="inline-flex w-full items-center justify-center gap-2 rounded-md border-2 border-accent px-6 py-3 text-base font-black text-accent transition-colors hover:bg-accent hover:text-black sm:w-auto md:hidden">
                   <PhoneIcon className="size-4 shrink-0" />
                   Call {phone}
                 </a>
               ) : (
                 <span className="text-base font-black text-foreground">{phone}</span>
               )}
+              <span className="hidden text-right text-base font-black text-foreground md:inline">Call or text {phone} from your phone</span>
             </p>
           )}
         </div>
