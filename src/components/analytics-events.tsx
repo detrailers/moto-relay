@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
-import { trackAnalyticsEvent } from "@/lib/analytics";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { trackAnalyticsEvent, trackMetaPixelEvent } from "@/lib/analytics";
 
 const CONTACT_PROTOCOLS = {
   "tel:": "call",
@@ -10,6 +11,16 @@ const CONTACT_PROTOCOLS = {
 } as const;
 
 export function AnalyticsEvents() {
+  const pathname = usePathname();
+  const previousPathname = useRef(pathname);
+
+  useEffect(() => {
+    if (pathname !== previousPathname.current) {
+      trackMetaPixelEvent("PageView");
+      previousPathname.current = pathname;
+    }
+  }, [pathname]);
+
   useEffect(() => {
     function trackContactClick(event: MouseEvent) {
       if (!(event.target instanceof Element)) return;
