@@ -5,7 +5,7 @@ import { ContentPageLayout } from "@/components/content-page-layout";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Motorcycle Shipping: Door-to-Door Transport | Moto Relay",
+  title: "Motorcycle Shipping: Door-to-Door Transport",
   description:
     "Door-to-door motorcycle shipping across the lower 48 states. Open or enclosed transport for running and non-running motorcycles that roll.",
   alternates: { canonical: "/motorcycle-shipping" },
