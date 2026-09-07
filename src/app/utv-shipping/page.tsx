@@ -105,6 +105,24 @@ export default function Page() {
 
       <section className="space-y-3">
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
+          Is your vehicle an ATV or a UTV?
+        </h2>
+        <p>
+          A UTV—often called a side-by-side—generally has side-by-side seating and may include a roof, windshield,
+          doors, or an enclosed cab. An ATV may have three or four wheels and commonly uses a straddle seat and
+          handlebars. These differences affect the vehicle&apos;s footprint, measurements, and trailer fit.
+        </p>
+        <p>
+          If your machine has a straddle seat and handlebars, see our{" "}
+          <Link href="/atv-shipping" className="font-semibold text-accent hover:underline">
+            three-wheel and four-wheel ATV shipping guide
+          </Link>{" "}
+          for the details needed before quoting.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
           Shipping an enclosed-cab UTV
         </h2>
         <p>
