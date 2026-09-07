@@ -115,6 +115,13 @@ export default function Page() {
           <li>Your preference for open, enclosed, or both transport options</li>
           <li>Your preferred pickup timing and any access limitations</li>
         </ul>
+        <p>
+          Shipping a side-by-side? Our{" "}
+          <Link href="/utv-shipping" className="font-semibold text-accent hover:underline">
+            UTV shipping guide
+          </Link>{" "}
+          explains the measurements and accessory details needed for standard and enclosed-cab machines.
+        </p>
       </section>
 
       <section className="space-y-3">
