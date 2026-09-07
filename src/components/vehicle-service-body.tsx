@@ -1,4 +1,5 @@
 import { Button } from "@/components/button";
+import Link from "next/link";
 import { site } from "@/lib/site";
 
 // Shared body content for the four vehicle-type service pages. The four
@@ -83,6 +84,17 @@ export function VehicleServiceBody({
           Have your {vehicleLabel} accessible for the carrier at pickup, with keys available if it
           runs. Secure or remove loose accessories, and note any existing damage before pickup. Confirm a delivery
           contact and address so your vehicle can be handed off without delay.
+        </p>
+        <p>
+          Learn what safe pickup access looks like in our{" "}
+          <Link href="/door-to-door-vs-depot-motorcycle-transport" className="font-semibold text-accent hover:underline">
+            door-to-door transport guide
+          </Link>
+          , then review the factors that shape a{" "}
+          <Link href="/motorcycle-shipping-cost" className="font-semibold text-accent hover:underline">
+            motorcycle and powersports shipping quote
+          </Link>
+          .
         </p>
       </section>
 
