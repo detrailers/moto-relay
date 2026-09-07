@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContentPageLayout } from "@/components/content-page-layout";
 import { Button } from "@/components/button";
 
@@ -54,6 +55,13 @@ export default function Page() {
       </section>
 
       <div className="pt-2">
+        <p className="mb-3">
+          Review Moto Relay&apos;s complete{" "}
+          <Link href="/motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            door-to-door motorcycle shipping service
+          </Link>{" "}
+          before requesting your route-specific quote.
+        </p>
         <Button href="/quote">Get Pricing for Both</Button>
       </div>
     </ContentPageLayout>
