@@ -122,6 +122,14 @@ export default function Page() {
           </Link>{" "}
           explains the measurements and accessory details needed for standard and enclosed-cab machines.
         </p>
+        <p>
+          Shipping a factory trike or motorcycle conversion? Review the rear-width, clearance, and condition details
+          in our{" "}
+          <Link href="/trike-shipping" className="font-semibold text-accent hover:underline">
+            trike shipping guide
+          </Link>
+          .
+        </p>
       </section>
 
       <section className="space-y-3">
