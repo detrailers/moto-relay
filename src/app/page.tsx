@@ -6,7 +6,9 @@ import { QuoteForm } from "@/components/quote-form";
 import { site, VEHICLE_TYPES } from "@/lib/site";
 
 export const metadata: Metadata = {
-  description: site.description,
+  title: "Nationwide Motorcycle & Powersports Shipping",
+  description:
+    "Door-to-door motorcycle, ATV, UTV and trike shipping across the lower 48 states. Open and enclosed transport with route-specific quotes.",
   alternates: { canonical: "/" },
 };
 
@@ -93,6 +95,39 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="border-y border-white/10 bg-[#111316] px-4 py-12 sm:px-6 sm:py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[.25em] text-accent">Direct vehicle transport</p>
+            <h2 className="mt-2 font-heading text-4xl font-black uppercase leading-none text-white sm:text-5xl">
+              Door-to-door.<br />No depots. No crates.
+            </h2>
+          </div>
+          <div className="space-y-4 text-base leading-relaxed text-white/70">
+            <p>
+              Moto Relay arranges motorcycle and powersports transport as close to your requested pickup and delivery
+              addresses as a carrier can safely and legally reach. We do not send vehicles through storage depots or
+              crate them for warehouse and forklift handling.
+            </p>
+            <p>
+              Every price is reviewed for the actual route, vehicle, condition, timing, and equipment needed. That
+              means a shipment-specific quote—not a generic national average or teaser price.
+            </p>
+            <div className="flex flex-wrap gap-x-6 gap-y-3 pt-2 text-sm font-black uppercase tracking-wide">
+              <Link href="/door-to-door-vs-depot-motorcycle-transport" className="text-accent hover:text-white">
+                Why door-to-door →
+              </Link>
+              <Link href="/motorcycle-shipping-cost" className="text-accent hover:text-white">
+                How pricing works →
+              </Link>
+              <Link href="/how-it-works" className="text-accent hover:text-white">
+                See the full process →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#f3f1ed] px-4 py-12 text-[#121315] sm:px-6 sm:py-16" id="vehicles-we-ship">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 flex items-end justify-between gap-6">
@@ -166,6 +201,9 @@ export default function HomePage() {
               </li>
             ))}
           </ol>
+          <Link href="/how-it-works" className="mt-7 inline-block text-sm font-black uppercase tracking-wide hover:underline">
+            View the complete quote-to-delivery process →
+          </Link>
         </div>
       </section>
 

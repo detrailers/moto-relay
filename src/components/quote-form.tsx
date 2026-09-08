@@ -20,6 +20,7 @@ const initialState: FormState = {
   runs: "",
   rolls: "",
   transport: "",
+  notes: "",
   name: "",
   phone: "",
   email: "",
@@ -260,6 +261,19 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
             </div>
             {errors.transport && <FieldError id={`${formId}-transport-error`}>{errors.transport}</FieldError>}
           </fieldset>
+
+          <Field id={`${formId}-notes`} label="Shipment notes (optional)" error={errors.notes}>
+            <textarea
+              id={`${formId}-notes`}
+              className={`${fieldBase} min-h-24 resize-y`}
+              placeholder="Dimensions, modifications, accessories, access limits, or special loading details"
+              value={data.notes}
+              onChange={(e) => update("notes", e.target.value)}
+              maxLength={1000}
+              aria-invalid={!!errors.notes}
+              aria-describedby={errors.notes ? `${formId}-notes-error` : undefined}
+            />
+          </Field>
 
           <Button type="submit" className="w-full sm:w-auto">
             Continue for My Quote

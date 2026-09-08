@@ -26,6 +26,7 @@ export type QuoteFormData = {
   runs: YesNo;
   rolls: YesNo;
   transport: Transport;
+  notes: string;
   name: string;
   phone: string;
   email: string;
@@ -34,6 +35,7 @@ export type QuoteFormData = {
 export type QuoteFormErrors = Partial<Record<keyof QuoteFormData, string>>;
 
 export const QUOTE_FIELD_MAX_LENGTH = 200;
+export const QUOTE_NOTES_MAX_LENGTH = 1000;
 
 function isTooLong(value: string) {
   return value.length > QUOTE_FIELD_MAX_LENGTH;
@@ -59,6 +61,7 @@ export function validateStepOne(data: QuoteFormData): QuoteFormErrors {
   else if (!VALID_YES_NO.has(data.rolls)) errors.rolls = "Invalid value for whether it rolls.";
   if (!data.transport) errors.transport = "Choose a transport preference.";
   else if (!VALID_TRANSPORT.has(data.transport)) errors.transport = "Invalid transport preference.";
+  if (data.notes.length > QUOTE_NOTES_MAX_LENGTH) errors.notes = "Shipment notes are too long.";
   return errors;
 }
 

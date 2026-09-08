@@ -22,7 +22,8 @@ export default function Page() {
         <p>
           When you request a quote, we collect the information you provide: your name, phone number, and email
           address, along with pickup and delivery locations, vehicle details (year, make, model), vehicle
-          condition (whether it runs and rolls), and your transport preference.
+          condition (whether it runs and rolls), transport preference, dimensions, modifications, and any optional
+          shipment notes you provide.
         </p>
       </section>
 

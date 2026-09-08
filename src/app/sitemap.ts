@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { site, ROUTES } from "@/lib/site";
 
 const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
+  "/": "2026-09-07",
   "/motorcycle-shipping": "2026-09-07",
   "/atv-shipping": "2026-09-07",
   "/utv-shipping": "2026-09-07",
@@ -10,6 +11,8 @@ const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
   "/motorcycle-shipping-faq": "2026-09-07",
   "/door-to-door-vs-depot-motorcycle-transport": "2026-09-07",
   "/how-it-works": "2026-09-07",
+  "/quote": "2026-09-07",
+  "/privacy": "2026-09-07",
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {

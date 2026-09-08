@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { validateQuoteSubmission, QUOTE_FIELD_MAX_LENGTH, type QuoteFormData } from "@/lib/quote-validation";
+import {
+  validateQuoteSubmission,
+  QUOTE_FIELD_MAX_LENGTH,
+  QUOTE_NOTES_MAX_LENGTH,
+  type QuoteFormData,
+} from "@/lib/quote-validation";
 
 // Generous ceiling for a form this size — anything beyond it is treated as
 // abuse, not a legitimate submission.
@@ -16,6 +21,7 @@ const FIELDS: (keyof QuoteFormData)[] = [
   "runs",
   "rolls",
   "transport",
+  "notes",
   "name",
   "phone",
   "email",
@@ -53,7 +59,8 @@ export async function POST(request: Request) {
   const collected: Record<string, string> = {};
   for (const field of FIELDS) {
     const value = record[field];
-    if (typeof value !== "string" || value.length > QUOTE_FIELD_MAX_LENGTH) {
+    const maxLength = field === "notes" ? QUOTE_NOTES_MAX_LENGTH : QUOTE_FIELD_MAX_LENGTH;
+    if (typeof value !== "string" || value.length > maxLength) {
       return errorResponse("Malformed submission.", 400);
     }
     collected[field] = value;
@@ -85,6 +92,7 @@ export async function POST(request: Request) {
     `Runs: ${data.runs}`,
     `Rolls: ${data.rolls}`,
     `Transport preference: ${data.transport}`,
+    `Shipment notes: ${data.notes || "None provided"}`,
     "",
     `Name: ${data.name}`,
     `Phone: ${data.phone}`,
