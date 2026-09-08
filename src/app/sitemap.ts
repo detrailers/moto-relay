@@ -3,6 +3,7 @@ import { site, ROUTES } from "@/lib/site";
 
 const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
   "/": "2026-09-07",
+  "/open-vs-enclosed-motorcycle-transport": "2026-09-08",
   "/motorcycle-shipping": "2026-09-07",
   "/atv-shipping": "2026-09-07",
   "/utv-shipping": "2026-09-07",
