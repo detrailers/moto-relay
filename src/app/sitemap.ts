@@ -9,6 +9,7 @@ const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
   "/motorcycle-shipping-cost": "2026-09-07",
   "/motorcycle-shipping-faq": "2026-09-07",
   "/door-to-door-vs-depot-motorcycle-transport": "2026-09-07",
+  "/how-it-works": "2026-09-07",
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {

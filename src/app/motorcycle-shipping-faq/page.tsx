@@ -54,6 +54,7 @@ export default function FaqPage() {
             ["Motorcycle shipping costs", "/motorcycle-shipping-cost"],
             ["Door-to-door transport", "/door-to-door-vs-depot-motorcycle-transport"],
             ["Open versus enclosed", "/open-vs-enclosed-motorcycle-transport"],
+            ["How Moto Relay shipping works", "/how-it-works"],
             ["Motorcycle shipping buyer's guide", "/motorcycle-shipping-buyers-guide"],
           ].map(([label, href]) => (
             <li key={href}>
