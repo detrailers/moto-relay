@@ -1,47 +1,82 @@
 import type { FaqItem } from "@/components/faq-accordion";
 
-// Owner-approved answers. Keep to the approved facts only — do not add
-// price ranges, transit-time promises, insurance limits/deductibles, or
-// claims about owning carriers/trucks/trailers.
+// Owner-approved answers. Keep to established service facts only — do not add
+// price ranges, transit-time promises, insurance limits/deductibles, or claims
+// about owning carriers, trucks, or trailers.
 export const FAQS: FaqItem[] = [
   {
     question: "How much does it cost to ship a motorcycle?",
     answer:
-      "Cost depends on your pickup and delivery locations, the vehicle type, whether you choose open or enclosed transport, the vehicle's condition, and current carrier availability. Because these factors vary by shipment, we don't publish flat rates — request a quote and we'll send you accurate pricing based on your specific details.",
+      "There is no dependable one-price-fits-all answer. Moto Relay quotes the actual pickup and delivery route, motorcycle, transport type, condition, timing, access, and current carrier availability instead of using a generic national average.",
+  },
+  {
+    question: "What information does Moto Relay need for an accurate quote?",
+    answer:
+      "Provide the pickup and delivery ZIP codes or cities, year, make and model, whether the vehicle runs and rolls, your open or enclosed preference, preferred timing, and any dimensions, modifications, or access limitations that could affect loading.",
   },
   {
     question: "How long does motorcycle shipping take?",
     answer:
-      "Delivery timing depends on your route, the transport option you choose, and carrier availability. We'll provide an estimated pickup and delivery window directly in your quote response rather than a general timeframe that may not apply to your shipment.",
+      "Timing depends on the actual route, transport option, scheduling needs, and carrier availability. Moto Relay provides an estimated pickup and delivery window for the specific shipment instead of publishing a general timeframe that may not apply.",
   },
   {
-    question: "What's the difference between open and enclosed transport?",
+    question: "Does Moto Relay provide door-to-door shipping?",
     answer:
-      "Open transport carries your vehicle on an open trailer alongside other vehicles — a widely used, practical option. Enclosed transport fully encloses your vehicle, shielding it from road debris and weather. Both are available; tell us your preference when you request a quote, or ask us to price both.",
+      "Yes. Pickup and delivery are arranged as close to the requested addresses as the carrier can safely and legally access. Narrow streets, low branches, tight turns, or local restrictions may require a nearby accessible meeting point.",
   },
   {
-    question: "Can you ship a motorcycle that doesn't run?",
+    question: "Does Moto Relay offer depot-to-depot shipping?",
     answer:
-      "Yes. We accept non-running vehicles as long as they roll — meaning the wheels turn freely and it can be pushed. Let us know your vehicle's condition when you request a quote so it can be loaded safely.",
+      "No. Moto Relay provides door-to-door transport and does not offer depot-to-depot shipping. Customers do not need to take the vehicle to one storage terminal and retrieve it from another.",
   },
   {
-    question: "What if the motorcycle doesn't roll?",
+    question: "Does Moto Relay crate motorcycles or powersports vehicles?",
     answer:
-      "Non-rolling vehicles — ones that cannot be pushed or rolled — currently cannot be accepted for transport. If you're unsure whether your vehicle qualifies, contact us and we can help you figure it out.",
+      "No. Moto Relay does not crate vehicles or use a depot-and-crate freight process involving forklift handling.",
   },
   {
-    question: "When do I pay my deposit?",
+    question: "What is the difference between open and enclosed transport?",
     answer:
-      "A deposit is due once your shipment has been dispatched — not before. You won't be asked for payment just to request or receive a quote.",
+      "Open transport carries the vehicle on an open trailer and is practical for many shipments. Enclosed transport shields it from weather and road debris. Moto Relay can quote open, enclosed, or both when the vehicle's dimensions and suitable equipment allow.",
   },
   {
-    question: "Is my motorcycle insured during transportation?",
+    question: "Can Moto Relay ship a motorcycle that does not run?",
     answer:
-      "Yes. Shipments are transported by DOT-authorized carriers in good standing, and full-coverage insurance is included. Specific coverage details are provided directly as part of arranging your shipment.",
+      "Yes. Moto Relay accepts non-running motorcycles when they still roll freely and can be moved for loading. Disclose whether the motorcycle runs and rolls when requesting the quote.",
   },
   {
-    question: "Do you ship outside the lower 48 states?",
+    question: "What if the motorcycle or powersports vehicle does not roll?",
     answer:
-      "We currently ship exclusively within the lower 48 United States. International shipping is not available at this time.",
+      "Vehicles that cannot be pushed or rolled are not currently accepted. Tell Moto Relay if steering, brakes, locked wheels, flat tires, or another condition could prevent the vehicle from rolling.",
+  },
+  {
+    question: "Can Moto Relay ship ATVs, UTVs, side-by-sides, and trikes?",
+    answer:
+      "Yes. Moto Relay arranges transport for motorcycles, three-wheel and four-wheel ATVs, UTVs and side-by-sides, factory trikes, and motorcycle trike conversions across the lower 48 United States.",
+  },
+  {
+    question: "Why do vehicle dimensions and modifications matter?",
+    answer:
+      "Length, width, height, weight, ground clearance, roofs, cabs, racks, oversized tires, conversion kits, and other additions can affect loading, securement, trailer clearance, and equipment availability. Provide finished dimensions as the vehicle will be shipped.",
+  },
+  {
+    question: "How should I prepare my vehicle for pickup?",
+    answer:
+      "Make the vehicle accessible, remove personal property, secure or remove loose accessories, provide keys when it runs, photograph its condition, and disclose any special starting, steering, braking, or loading instructions.",
+  },
+  {
+    question: "When is the deposit due?",
+    answer:
+      "A deposit is due once the shipment has been dispatched, not before. No payment is required merely to request or receive a quote.",
+  },
+  {
+    question: "Is my vehicle insured during transportation?",
+    answer:
+      "Shipments are transported by DOT-authorized carriers in good standing, and full-coverage insurance is included. Specific coverage details are provided directly as part of arranging the shipment.",
+  },
+  {
+    question: "Does Moto Relay ship outside the lower 48 states?",
+    answer:
+      "Moto Relay currently ships exclusively within the lower 48 United States. International, Alaska, and Hawaii shipping are not available at this time.",
   },
 ];
