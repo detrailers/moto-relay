@@ -89,6 +89,7 @@ export default function Page() {
       eyebrow="Pickup Checklist"
       title="How to Prepare a Motorcycle for Shipping"
       intro="A little preparation makes pickup easier, documents your motorcycle's condition, and helps prevent avoidable delays."
+      reviewed
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 

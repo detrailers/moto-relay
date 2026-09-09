@@ -60,6 +60,16 @@ export function SiteFooter() {
                   Terms of Service
                 </Link>
               </li>
+              <li>
+                <a
+                  href={site.facebook}
+                  className="text-sm text-foreground hover:text-accent"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Facebook
+                </a>
+              </li>
             </ul>
           </div>
         </div>

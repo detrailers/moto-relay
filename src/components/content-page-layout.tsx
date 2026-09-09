@@ -1,12 +1,16 @@
+import Link from "next/link";
+
 export function ContentPageLayout({
   eyebrow,
   title,
   intro,
+  reviewed = false,
   children,
 }: {
   eyebrow?: string;
   title: string;
   intro?: string;
+  reviewed?: boolean;
   children?: React.ReactNode;
 }) {
   return (
@@ -18,6 +22,16 @@ export function ContentPageLayout({
         {title}
       </h1>
       {intro && <p className="mt-4 text-lg text-muted-foreground">{intro}</p>}
+      {reviewed && (
+        <p className="mt-5 border-l-2 border-accent pl-4 text-sm text-muted-foreground">
+          Reviewed by the Moto Relay team. Moto Relay is owned and operated by Texas Moto Worx, drawing on 22 years
+          of transport experience.{" "}
+          <Link href="/about" className="font-semibold text-accent hover:underline">
+            Learn about Moto Relay
+          </Link>
+          .
+        </p>
+      )}
       <div className="mt-8 space-y-4 text-muted-foreground">
         {children ?? (
           <p className="rounded-md border border-dashed border-border p-6 text-sm">

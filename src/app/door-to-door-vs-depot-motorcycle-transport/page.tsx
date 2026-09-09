@@ -54,6 +54,7 @@ export default function Page() {
       eyebrow="Shipping Guide"
       title="Door-to-Door vs. Depot-to-Depot Motorcycle Transport"
       intro="Door-to-door shipping is the more direct, convenient choice—and it is the service Moto Relay provides."
+      reviewed
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 

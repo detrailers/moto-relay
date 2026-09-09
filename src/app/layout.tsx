@@ -25,6 +25,7 @@ const organizationJsonLd = {
     "@type": "Organization",
     name: site.parentCompany,
   },
+  sameAs: [site.facebook],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",

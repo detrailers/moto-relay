@@ -34,6 +34,14 @@ export default function FaqPage() {
       <p className="mt-4 text-lg text-muted-foreground">
         Clear answers about pricing, timing, pickup, transport equipment, vehicle condition, preparation, and coverage.
       </p>
+      <p className="mt-5 border-l-2 border-accent pl-4 text-sm text-muted-foreground">
+        Reviewed by the Moto Relay team. Moto Relay is owned and operated by Texas Moto Worx, drawing on 22 years of
+        transport experience.{" "}
+        <Link href="/about" className="font-semibold text-accent hover:underline">
+          Learn about Moto Relay
+        </Link>
+        .
+      </p>
       <div className="mt-8">
         <FaqAccordion items={FAQS} />
       </div>

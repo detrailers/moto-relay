@@ -72,6 +72,7 @@ export default function Page() {
       eyebrow="Pricing Guide"
       title="Motorcycle Shipping Cost"
       intro="There is no honest one-price-fits-all answer. Your route, motorcycle, timing, and transport type determine the quote."
+      reviewed
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 

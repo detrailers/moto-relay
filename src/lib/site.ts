@@ -32,6 +32,7 @@ export const site = {
   // Public and quote-recipient email — owner-approved.
   email: "motorelaytransport@gmail.com",
   emailHref: "mailto:motorelaytransport@gmail.com",
+  facebook: "https://www.facebook.com/profile.php?id=61593979203454",
 };
 
 export type VehicleType = {

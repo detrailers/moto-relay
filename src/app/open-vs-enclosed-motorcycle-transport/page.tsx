@@ -63,6 +63,7 @@ export default function Page() {
       eyebrow="Transport Guide"
       title="Open vs. Enclosed Motorcycle Transport"
       intro="Both can provide door-to-door transportation. The difference is exposure, equipment fit, availability, and what matters most for your vehicle."
+      reviewed
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
