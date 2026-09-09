@@ -52,6 +52,7 @@ export default function FaqPage() {
             ["UTV and side-by-side shipping", "/utv-shipping"],
             ["Trike shipping", "/trike-shipping"],
             ["Motorcycle shipping costs", "/motorcycle-shipping-cost"],
+            ["Prepare a motorcycle for shipping", "/prepare-motorcycle-for-shipping"],
             ["Door-to-door transport", "/door-to-door-vs-depot-motorcycle-transport"],
             ["Open versus enclosed", "/open-vs-enclosed-motorcycle-transport"],
             ["How Moto Relay shipping works", "/how-it-works"],

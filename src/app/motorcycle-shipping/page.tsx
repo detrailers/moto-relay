@@ -179,11 +179,15 @@ export default function Page() {
           <li>Confirm the delivery contact and phone number.</li>
         </ul>
         <p>
-          Review our{" "}
+          Follow the complete{" "}
+          <Link href="/prepare-motorcycle-for-shipping" className="font-semibold text-accent hover:underline">
+            motorcycle preparation checklist
+          </Link>{" "}
+          before pickup, then review our{" "}
           <Link href="/motorcycle-shipping-buyers-guide" className="font-semibold text-accent hover:underline">
             motorcycle shipping buyer&apos;s guide
           </Link>{" "}
-          for additional planning and carrier questions.
+          for carrier questions.
         </p>
       </section>
 

@@ -9,6 +9,7 @@ const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
   "/utv-shipping": "2026-09-07",
   "/trike-shipping": "2026-09-07",
   "/motorcycle-shipping-cost": "2026-09-07",
+  "/prepare-motorcycle-for-shipping": "2026-09-08",
   "/motorcycle-shipping-faq": "2026-09-07",
   "/motorcycle-shipping-buyers-guide": "2026-09-08",
   "/door-to-door-vs-depot-motorcycle-transport": "2026-09-07",
