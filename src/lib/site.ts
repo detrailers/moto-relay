@@ -61,6 +61,7 @@ export const primaryNav: NavItem[] = [
     children: VEHICLE_TYPES.map((v) => ({ label: v.label, href: `/${v.slug}` })),
   },
   { label: "How It Works", href: "/how-it-works" },
+  { label: "About", href: "/about" },
   { label: "FAQ", href: "/motorcycle-shipping-faq" },
   { label: "Buyer's Guide", href: "/motorcycle-shipping-buyers-guide" },
 ];
@@ -75,6 +76,7 @@ export const ROUTES: string[] = [
   "/open-vs-enclosed-motorcycle-transport",
   "/door-to-door-vs-depot-motorcycle-transport",
   "/how-it-works",
+  "/about",
   "/motorcycle-shipping-cost",
   "/prepare-motorcycle-for-shipping",
   "/motorcycle-shipping-faq",
