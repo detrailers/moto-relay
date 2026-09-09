@@ -73,9 +73,10 @@ export default function Page() {
           Why enclosed transport was selected
         </h2>
         <p>
-          The Suzuki GT750 was both rare and completely restored. Protecting its finish and condition was the
-          customer’s priority, so Moto Relay arranged enclosed transportation for the trip from Corinth to Glendale.
-          The vehicle and route—not a generic one-size-fits-all rule—guided that equipment choice.
+          In August, Moto Relay arranged transportation for this rare, completely restored Suzuki GT750. Protecting
+          its finish and condition was the customer’s priority, so enclosed transportation was selected for the trip
+          from Corinth to Glendale. The vehicle and route—not a generic one-size-fits-all rule—guided that equipment
+          choice.
         </p>
       </section>
 
