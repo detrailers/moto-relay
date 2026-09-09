@@ -15,6 +15,8 @@ const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
   "/door-to-door-vs-depot-motorcycle-transport": "2026-09-07",
   "/how-it-works": "2026-09-07",
   "/about": "2026-09-08",
+  "/recent-transports": "2026-09-09",
+  "/recent-transports/1974-suzuki-gt750-corinth-to-glendale": "2026-09-09",
   "/quote": "2026-09-07",
   "/privacy": "2026-09-07",
 };

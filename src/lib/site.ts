@@ -63,6 +63,7 @@ export const primaryNav: NavItem[] = [
   },
   { label: "How It Works", href: "/how-it-works" },
   { label: "About", href: "/about" },
+  { label: "Recent Transports", href: "/recent-transports" },
   { label: "FAQ", href: "/motorcycle-shipping-faq" },
   { label: "Buyer's Guide", href: "/motorcycle-shipping-buyers-guide" },
 ];
@@ -78,6 +79,8 @@ export const ROUTES: string[] = [
   "/door-to-door-vs-depot-motorcycle-transport",
   "/how-it-works",
   "/about",
+  "/recent-transports",
+  "/recent-transports/1974-suzuki-gt750-corinth-to-glendale",
   "/motorcycle-shipping-cost",
   "/prepare-motorcycle-for-shipping",
   "/motorcycle-shipping-faq",
