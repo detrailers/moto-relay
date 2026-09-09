@@ -23,7 +23,9 @@ export default function Page() {
           When you request a quote, we collect the information you provide: your name, phone number, and email
           address, along with pickup and delivery locations, vehicle details (year, make, model), vehicle
           condition (whether it runs and rolls), transport preference, dimensions, modifications, and any optional
-          shipment notes you provide.
+          shipment notes you provide. When you complete a shipment booking, we also collect the pickup and delivery
+          contacts and addresses, accepted shipment price, requested date, and electronic signature you provide.
+          Payment-card information is not collected by or sent through this website.
         </p>
       </section>
 
@@ -74,6 +76,10 @@ export default function Page() {
         <p>
           We take reasonable steps to keep the information you submit secure and retain it only as long as
           reasonably needed to respond to your request and provide our services.
+        </p>
+        <p>
+          Card payments are processed separately through eProcessing Network. Do not send card numbers, expiration
+          dates, or security codes through this website, email, or text message.
         </p>
       </section>
 
