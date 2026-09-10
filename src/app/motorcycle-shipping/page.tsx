@@ -132,7 +132,11 @@ export default function Page() {
         <p>
           Moto Relay accepts running motorcycles and non-running motorcycles that still roll freely. Disclose a
           non-running motorcycle when requesting the quote so the correct loading needs can be considered. A motorcycle
-          that cannot roll is not currently eligible for transport through Moto Relay.
+          that cannot roll is not currently eligible for transport through Moto Relay. See the condition and loading
+          details in our{" "}
+          <Link href="/non-running-motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            non-running motorcycle shipping guide
+          </Link>.
         </p>
       </section>
 

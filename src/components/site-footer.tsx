@@ -42,6 +42,11 @@ export function SiteFooter() {
             <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Shipping Guides</h2>
             <ul className="mt-3 space-y-2">
               <li>
+                <Link href="/non-running-motorcycle-shipping" className="text-sm text-foreground hover:text-accent">
+                  Non-Running Motorcycles
+                </Link>
+              </li>
+              <li>
                 <Link href="/door-to-door-vs-depot-motorcycle-transport" className="text-sm text-foreground hover:text-accent">
                   Door-to-Door vs. Depot
                 </Link>
