@@ -122,6 +122,10 @@ export default function Page() {
           our{" "}
           <Link href="/open-vs-enclosed-motorcycle-transport" className="font-semibold text-accent hover:underline">
             open versus enclosed motorcycle transport guide
+          </Link>{" "}
+          and our{" "}
+          <Link href="/classic-custom-restored-motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            classic, custom, and restored motorcycle shipping guide
           </Link>
           .
         </p>

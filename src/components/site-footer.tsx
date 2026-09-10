@@ -47,6 +47,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/classic-custom-restored-motorcycle-shipping" className="text-sm text-foreground hover:text-accent">
+                  Classic &amp; Custom Motorcycles
+                </Link>
+              </li>
+              <li>
                 <Link href="/door-to-door-vs-depot-motorcycle-transport" className="text-sm text-foreground hover:text-accent">
                   Door-to-Door vs. Depot
                 </Link>

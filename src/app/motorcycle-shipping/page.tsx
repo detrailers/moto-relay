@@ -121,6 +121,9 @@ export default function Page() {
           Ask Moto Relay to price open transport, enclosed transport, or both. Compare the options in our{" "}
           <Link href="/open-vs-enclosed-motorcycle-transport" className="font-semibold text-accent hover:underline">
             open versus enclosed transport guide
+          </Link>. Owners of collectible or modified motorcycles can also review our{" "}
+          <Link href="/classic-custom-restored-motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            classic, custom, and restored motorcycle shipping guide
           </Link>.
         </p>
       </section>

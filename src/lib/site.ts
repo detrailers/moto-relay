@@ -78,6 +78,7 @@ export const ROUTES: string[] = [
   "/open-vs-enclosed-motorcycle-transport",
   "/door-to-door-vs-depot-motorcycle-transport",
   "/non-running-motorcycle-shipping",
+  "/classic-custom-restored-motorcycle-shipping",
   "/how-it-works",
   "/about",
   "/recent-transports",

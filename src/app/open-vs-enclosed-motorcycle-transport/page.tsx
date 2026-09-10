@@ -110,6 +110,13 @@ export default function Page() {
           road debris. Riders often consider it for custom, collectible, restored, or high-value motorcycles, although
           the decision is based on personal priorities rather than a rule that every such motorcycle must be enclosed.
         </p>
+        <p>
+          If the motorcycle is collectible, modified, or recently restored, review our{" "}
+          <Link href="/classic-custom-restored-motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            classic, custom, and restored motorcycle shipping guide
+          </Link>{" "}
+          for condition documentation and quote details.
+        </p>
         <h3 className="font-heading font-bold uppercase tracking-wide text-foreground">
           When enclosed transport may fit
         </h3>
