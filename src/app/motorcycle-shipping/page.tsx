@@ -124,6 +124,9 @@ export default function Page() {
           </Link>. Owners of collectible or modified motorcycles can also review our{" "}
           <Link href="/classic-custom-restored-motorcycle-shipping" className="font-semibold text-accent hover:underline">
             classic, custom, and restored motorcycle shipping guide
+          </Link>. If the motorcycle is waiting with a seller, dealer, or auction, follow our{" "}
+          <Link href="/motorcycle-shipping-after-online-purchase-auction" className="font-semibold text-accent hover:underline">
+            online motorcycle purchase and auction shipping guide
           </Link>.
         </p>
       </section>
