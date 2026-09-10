@@ -198,7 +198,7 @@ export default function Page() {
         <p>
           Learn more about direct service in the{" "}
           <Link href="/door-to-door-vs-depot-motorcycle-transport" className="font-semibold text-accent hover:underline">
-            door-to-door versus depot transport guide
+            door-to-door vs. depot-to-depot motorcycle transport guide
           </Link>.
         </p>
       </section>

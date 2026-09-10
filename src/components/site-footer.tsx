@@ -6,7 +6,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-3">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Wordmark />
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">{site.description}</p>
@@ -35,6 +35,32 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Shipping Guides</h2>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <Link href="/door-to-door-vs-depot-motorcycle-transport" className="text-sm text-foreground hover:text-accent">
+                  Door-to-Door vs. Depot
+                </Link>
+              </li>
+              <li>
+                <Link href="/open-vs-enclosed-motorcycle-transport" className="text-sm text-foreground hover:text-accent">
+                  Open vs. Enclosed
+                </Link>
+              </li>
+              <li>
+                <Link href="/motorcycle-shipping-cost" className="text-sm text-foreground hover:text-accent">
+                  Shipping Cost Factors
+                </Link>
+              </li>
+              <li>
+                <Link href="/prepare-motorcycle-for-shipping" className="text-sm text-foreground hover:text-accent">
+                  Prepare Your Motorcycle
+                </Link>
+              </li>
             </ul>
           </div>
 

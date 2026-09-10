@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPageLayout } from "@/components/content-page-layout";
 import { Button } from "@/components/button";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Door-to-Door vs. Depot-to-Depot Motorcycle Transport",
   description:
-    "Learn why door-to-door motorcycle shipping is usually more convenient than depot-to-depot transport and how Moto Relay coordinates direct pickup and delivery.",
+    "Compare door-to-door and depot-to-depot motorcycle transport. Learn how direct pickup reduces terminal trips, extra handling, storage, and custody handoffs.",
   alternates: { canonical: "/door-to-door-vs-depot-motorcycle-transport" },
 };
 
@@ -39,6 +40,19 @@ const FAQS = [
 ];
 
 export default function Page() {
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Door-to-Door vs. Depot-to-Depot Motorcycle Transport",
+    description:
+      "A direct comparison of door-to-door and depot-to-depot motorcycle transport, including handling, custody, convenience, and crating.",
+    datePublished: "2026-09-07",
+    dateModified: "2026-09-10",
+    author: { "@type": "Organization", name: site.name, url: site.url },
+    publisher: { "@id": `${site.url}/#organization` },
+    mainEntityOfPage: `${site.url}/door-to-door-vs-depot-motorcycle-transport`,
+  };
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -56,7 +70,17 @@ export default function Page() {
       intro="Door-to-door shipping is the more direct, convenient choice—and it is the service Moto Relay provides."
       reviewed
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+
+      <aside className="border-l-4 border-accent bg-surface p-5 text-foreground">
+        <h2 className="font-heading text-lg font-bold uppercase tracking-wide">The short answer</h2>
+        <p className="mt-2 text-muted-foreground">
+          Door-to-door motorcycle transport coordinates pickup and delivery near your addresses. Depot-to-depot
+          shipping requires terminal trips and may add storage, handling, and custody handoffs. Moto Relay provides
+          door-to-door service only and does not crate vehicles.
+        </p>
+      </aside>
 
       <section className="space-y-3">
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
