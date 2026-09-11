@@ -21,6 +21,7 @@ const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
   "/about": "2026-09-08",
   "/recent-transports": "2026-09-09",
   "/recent-transports/1974-suzuki-gt750-corinth-to-glendale": "2026-09-09",
+  "/recent-transports/honda-vfr-st-louis-to-new-york": "2026-09-11",
   "/quote": "2026-09-07",
   "/privacy": "2026-09-07",
 };

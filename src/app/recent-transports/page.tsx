@@ -44,6 +44,31 @@ export default function Page() {
         </Link>
       </section>
 
+      <section className="rounded-lg border border-border bg-surface p-6">
+        <Image
+          src="/images/recent-transports/honda-vfr-st-louis-to-new-york.jpg"
+          alt="Red Honda VFR motorcycle secured inside a transport trailer"
+          width={1800}
+          height={1350}
+          className="mb-6 aspect-video w-full rounded-md object-cover"
+          sizes="(max-width: 768px) 100vw, 768px"
+        />
+        <p className="text-xs font-bold uppercase tracking-widest text-accent">St. Louis to New York</p>
+        <h2 className="mt-2 font-heading text-xl font-bold uppercase tracking-wide text-foreground">
+          Crystal’s Honda VFR Delivered After a Difficult Prior Experience
+        </h2>
+        <p className="mt-3">
+          After a previous transport damage and insurance problem left Crystal more than $2,000 out of pocket, she
+          wanted responsive communication and carrier insurance confirmation for her cherished Honda VFR.
+        </p>
+        <Link
+          href="/recent-transports/honda-vfr-st-louis-to-new-york"
+          className="mt-4 inline-block font-semibold text-accent hover:underline"
+        >
+          Read Crystal&apos;s shipment story →
+        </Link>
+      </section>
+
       <div className="space-y-3 pt-2">
         <p>Have a restored, collector, or unusual motorcycle to move? Tell us about the vehicle and route.</p>
         <Button href="/quote">Request My Shipping Quote</Button>

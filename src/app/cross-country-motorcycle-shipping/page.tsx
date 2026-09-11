@@ -247,6 +247,19 @@ export default function Page() {
         ))}
       </section>
 
+      <section className="space-y-3">
+        <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
+          A real St. Louis-to-New York shipment
+        </h2>
+        <p>
+          Read how Crystal&apos;s Honda VFR was picked up on time and delivered in New York within the quoted window after
+          a difficult prior experience made carrier insurance documentation especially important. See the{" "}
+          <Link href="/recent-transports/honda-vfr-st-louis-to-new-york" className="font-semibold text-accent hover:underline">
+            Honda VFR customer story
+          </Link>.
+        </p>
+      </section>
+
       <div className="space-y-3 pt-2">
         <p>Send the actual cross-country route and motorcycle details for a shipment-specific quote.</p>
         <Button href="/quote">Request My Cross-Country Quote</Button>
