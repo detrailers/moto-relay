@@ -81,6 +81,7 @@ export const ROUTES: string[] = [
   "/classic-custom-restored-motorcycle-shipping",
   "/motorcycle-shipping-after-online-purchase-auction",
   "/cross-country-motorcycle-shipping",
+  "/motorcycle-shipping-insurance",
   "/how-it-works",
   "/about",
   "/recent-transports",

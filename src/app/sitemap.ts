@@ -17,6 +17,7 @@ const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
   "/classic-custom-restored-motorcycle-shipping": "2026-09-10",
   "/motorcycle-shipping-after-online-purchase-auction": "2026-09-10",
   "/cross-country-motorcycle-shipping": "2026-09-11",
+  "/motorcycle-shipping-insurance": "2026-09-11",
   "/how-it-works": "2026-09-07",
   "/about": "2026-09-08",
   "/recent-transports": "2026-09-09",

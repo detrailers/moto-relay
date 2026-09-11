@@ -152,7 +152,10 @@ export default function Page() {
           For more questions to ask before booking, use our{" "}
           <Link href="/motorcycle-shipping-buyers-guide" className="font-semibold text-accent hover:underline">
             motorcycle shipping buyer&apos;s guide
-          </Link>{" "}
+          </Link>, our{" "}
+          <Link href="/motorcycle-shipping-insurance" className="font-semibold text-accent hover:underline">
+            motorcycle shipping insurance guide
+          </Link>,{" "}
           and our{" "}
           <Link href="/prepare-motorcycle-for-shipping" className="font-semibold text-accent hover:underline">
             motorcycle preparation checklist

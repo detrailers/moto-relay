@@ -62,6 +62,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/motorcycle-shipping-insurance" className="text-sm text-foreground hover:text-accent">
+                  Shipping Insurance Guide
+                </Link>
+              </li>
+              <li>
                 <Link href="/door-to-door-vs-depot-motorcycle-transport" className="text-sm text-foreground hover:text-accent">
                   Door-to-Door vs. Depot
                 </Link>

@@ -242,6 +242,21 @@ export default function Page() {
 
       <section className="space-y-3">
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
+          Verify motorcycle insurance details
+        </h2>
+        <p>
+          Do not rely only on a statement that a company or carrier “has insurance.” Review the assigned carrier&apos;s
+          identity, current documentation, coverage type, dates, limits, deductible, exclusions, and claim procedure.
+          Follow our{" "}
+          <Link href="/motorcycle-shipping-insurance" className="font-semibold text-accent hover:underline">
+            motorcycle shipping insurance checklist
+          </Link>{" "}
+          before pickup.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
           Motorcycle shipping warning signs
         </h2>
         <ul className="list-disc space-y-1.5 pl-5">
