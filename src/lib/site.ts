@@ -65,7 +65,7 @@ export const primaryNav: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Recent Transports", href: "/recent-transports" },
   { label: "FAQ", href: "/motorcycle-shipping-faq" },
-  { label: "Buyer's Guide", href: "/motorcycle-shipping-buyers-guide" },
+  { label: "Guides", href: "/motorcycle-shipping-guides" },
 ];
 
 // Every currently-built route — the single source of truth for sitemap.ts.
@@ -82,6 +82,7 @@ export const ROUTES: string[] = [
   "/motorcycle-shipping-after-online-purchase-auction",
   "/cross-country-motorcycle-shipping",
   "/motorcycle-shipping-insurance",
+  "/motorcycle-shipping-guides",
   "/how-it-works",
   "/about",
   "/recent-transports",

@@ -123,6 +123,9 @@ export default function HomePage() {
               <Link href="/how-it-works" className="text-accent hover:text-white">
                 See the full process →
               </Link>
+              <Link href="/motorcycle-shipping-guides" className="text-accent hover:text-white">
+                Browse shipping guides →
+              </Link>
             </div>
           </div>
         </div>
