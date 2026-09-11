@@ -82,6 +82,10 @@ export default function Page() {
         </p>
         <p>
           Service is available for standard motorcycles, cruisers, touring bikes, sport bikes, and custom motorcycles.
+          For long-distance planning, see our{" "}
+          <Link href="/cross-country-motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            cross-country motorcycle shipping guide
+          </Link>.{" "}
           We also have dedicated pages for{" "}
           <Link href="/trike-shipping" className="font-semibold text-accent hover:underline">trike shipping</Link>,{" "}
           <Link href="/atv-shipping" className="font-semibold text-accent hover:underline">ATV shipping</Link>, and{" "}

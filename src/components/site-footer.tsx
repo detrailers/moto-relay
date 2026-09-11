@@ -57,6 +57,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/cross-country-motorcycle-shipping" className="text-sm text-foreground hover:text-accent">
+                  Cross-Country Shipping
+                </Link>
+              </li>
+              <li>
                 <Link href="/door-to-door-vs-depot-motorcycle-transport" className="text-sm text-foreground hover:text-accent">
                   Door-to-Door vs. Depot
                 </Link>

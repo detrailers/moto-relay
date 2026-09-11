@@ -80,6 +80,7 @@ export const ROUTES: string[] = [
   "/non-running-motorcycle-shipping",
   "/classic-custom-restored-motorcycle-shipping",
   "/motorcycle-shipping-after-online-purchase-auction",
+  "/cross-country-motorcycle-shipping",
   "/how-it-works",
   "/about",
   "/recent-transports",
