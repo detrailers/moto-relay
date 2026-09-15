@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { BOOKING_FIELD_MAX_LENGTH, BOOKING_NOTES_MAX_LENGTH, validateBooking, type BookingFormData } from "@/lib/booking-validation";
 
 const FIELDS = Object.keys({
-  quoteNumber:1,totalPrice:1,depositAmount:1,pickupDate:1,customerName:1,customerEmail:1,customerPhone:1,pickupContact:1,pickupAddress:1,pickupCity:1,pickupState:1,pickupZip:1,pickupPhone:1,pickupAlternatePhone:1,deliveryContact:1,deliveryAddress:1,deliveryCity:1,deliveryState:1,deliveryZip:1,deliveryPhone:1,deliveryAlternatePhone:1,vehicleOne:1,vehicleOneColor:1,vehicleTwo:1,vehicleTwoColor:1,runs:1,rolls:1,notes:1,referralSource:1,signature:1,accepted:1,
+  quoteNumber:1,totalPrice:1,depositAmount:1,pickupDate:1,customerName:1,customerEmail:1,customerPhone:1,pickupContact:1,pickupAddress:1,pickupCity:1,pickupState:1,pickupZip:1,pickupPhone:1,pickupAlternatePhone:1,deliveryContact:1,deliveryAddress:1,deliveryCity:1,deliveryState:1,deliveryZip:1,deliveryPhone:1,deliveryAlternatePhone:1,vehicleOne:1,vehicleOneColor:1,vehicleTwo:1,vehicleTwoColor:1,transportType:1,runs:1,rolls:1,notes:1,referralSource:1,signature:1,accepted:1,
 }) as (keyof BookingFormData)[];
 
 export async function POST(request: Request) {
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     `Customer: ${data.customerName}`,`Email: ${data.customerEmail}`,`Phone: ${data.customerPhone}`,"",
     `Pickup contact: ${data.pickupContact}`,`Pickup address: ${data.pickupAddress}, ${data.pickupCity}, ${data.pickupState} ${data.pickupZip}`,`Pickup phone: ${data.pickupPhone}`,`Pickup alternate: ${data.pickupAlternatePhone||"None"}`,"",
     `Delivery contact: ${data.deliveryContact}`,`Delivery address: ${data.deliveryAddress}, ${data.deliveryCity}, ${data.deliveryState} ${data.deliveryZip}`,`Delivery phone: ${data.deliveryPhone}`,`Delivery alternate: ${data.deliveryAlternatePhone||"None"}`,"",
-    `Vehicle 1: ${data.vehicleOne} — ${data.vehicleOneColor}`,`Vehicle 2: ${data.vehicleTwo?`${data.vehicleTwo} — ${data.vehicleTwoColor||"color not provided"}`:"None"}`,`Runs: ${data.runs}`,`Rolls: ${data.rolls}`,`Notes: ${data.notes||"None"}`,`Referral: ${data.referralSource||"Not provided"}`,"",`Accepted by electronic signature: ${data.signature}`,
+    `Vehicle 1: ${data.vehicleOne} — ${data.vehicleOneColor}`,`Vehicle 2: ${data.vehicleTwo?`${data.vehicleTwo} — ${data.vehicleTwoColor||"color not provided"}`:"None"}`,`Transport type: ${data.transportType}`,`Runs: ${data.runs}`,`Rolls: ${data.rolls}`,`Notes: ${data.notes||"None"}`,`Referral: ${data.referralSource||"Not provided"}`,"",`Accepted by electronic signature: ${data.signature}`,
     `PAYMENT NOTE: No card data was collected. Contact the customer to process the $${deposit.toFixed(2)} deposit through eProcessing Network.`,
   ];
   const resend=new Resend(apiKey);

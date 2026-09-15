@@ -27,6 +27,7 @@ export type BookingFormData = {
   vehicleOneColor: string;
   vehicleTwo: string;
   vehicleTwoColor: string;
+  transportType: string;
   runs: string;
   rolls: string;
   notes: string;
@@ -41,7 +42,7 @@ const required: (keyof BookingFormData)[] = [
   "quoteNumber", "totalPrice", "depositAmount", "pickupDate", "customerName", "customerEmail", "customerPhone",
   "pickupContact", "pickupAddress", "pickupCity", "pickupState", "pickupZip", "pickupPhone",
   "deliveryContact", "deliveryAddress", "deliveryCity", "deliveryState", "deliveryZip", "deliveryPhone",
-  "vehicleOne", "vehicleOneColor", "runs", "rolls", "signature", "accepted",
+  "vehicleOne", "vehicleOneColor", "transportType", "runs", "rolls", "signature", "accepted",
 ];
 
 export function validateBooking(data: BookingFormData): BookingErrors {
@@ -58,6 +59,7 @@ export function validateBooking(data: BookingFormData): BookingErrors {
   if (!Number.isFinite(total) || total <= 0) errors.totalPrice = "Enter the accepted total price";
   else if (Number.isFinite(deposit) && deposit > total) errors.depositAmount = "Deposit cannot exceed the total price";
   if (data.accepted !== "yes") errors.accepted = "You must accept the booking terms";
+  if (data.transportType && !["Open", "Enclosed"].includes(data.transportType)) errors.transportType = "Choose open or enclosed";
   if (data.runs && !["Yes", "No"].includes(data.runs)) errors.runs = "Choose yes or no";
   if (data.rolls && !["Yes", "No"].includes(data.rolls)) errors.rolls = "Choose yes or no";
   return errors;
