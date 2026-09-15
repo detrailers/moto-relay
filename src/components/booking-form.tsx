@@ -6,7 +6,7 @@ import { validateBooking, type BookingErrors, type BookingFormData } from "@/lib
 import { site } from "@/lib/site";
 
 const empty: BookingFormData = {
-  quoteNumber: "", totalPrice: "", pickupDate: "", customerName: "", customerEmail: "", customerPhone: "",
+  quoteNumber: "", totalPrice: "", depositAmount: "250", pickupDate: "", customerName: "", customerEmail: "", customerPhone: "",
   pickupContact: "", pickupAddress: "", pickupCity: "", pickupState: "", pickupZip: "", pickupPhone: "", pickupAlternatePhone: "",
   deliveryContact: "", deliveryAddress: "", deliveryCity: "", deliveryState: "", deliveryZip: "", deliveryPhone: "", deliveryAlternatePhone: "",
   vehicleOne: "", vehicleOneColor: "", vehicleTwo: "", vehicleTwoColor: "", runs: "", rolls: "", notes: "", referralSource: "", signature: "", accepted: "",
@@ -14,8 +14,8 @@ const empty: BookingFormData = {
 
 const inputClass = "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-sm text-form-foreground placeholder:text-form-muted focus:border-accent";
 
-export function BookingForm() {
-  const [data, setData] = useState(empty);
+export function BookingForm({ initialValues, prepared = false }: { initialValues?: Partial<BookingFormData>; prepared?: boolean }) {
+  const [data, setData] = useState<BookingFormData>({ ...empty, ...initialValues });
   const [errors, setErrors] = useState<BookingErrors>({});
   const [sending, setSending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -23,8 +23,10 @@ export function BookingForm() {
   const [website, setWebsite] = useState("");
   const balance = useMemo(() => {
     const total = Number(data.totalPrice);
-    return Number.isFinite(total) && total >= 250 ? total - 250 : null;
-  }, [data.totalPrice]);
+    const deposit = Number(data.depositAmount);
+    return Number.isFinite(total) && Number.isFinite(deposit) && total >= deposit ? total - deposit : null;
+  }, [data.totalPrice, data.depositAmount]);
+  const depositDisplay = Number(data.depositAmount).toLocaleString("en-US", { style: "currency", currency: "USD" });
 
   function update(field: keyof BookingFormData, value: string) {
     setData((current) => ({ ...current, [field]: value }));
@@ -48,7 +50,7 @@ export function BookingForm() {
   if (submitted) return (
     <div role="status" className="rounded-2xl border border-accent bg-form-surface p-8 text-center text-form-foreground">
       <h2 className="font-heading text-2xl font-bold uppercase">Booking information received</h2>
-      <p className="mt-3">Your card has not been charged. Call or text <a className="font-bold text-accent" href={site.phoneHref}>{site.phone}</a> to securely process the $250 deposit through eProcessing Network.</p>
+      <p className="mt-3">Your card has not been charged. Call or text <a className="font-bold text-accent" href={site.phoneHref}>{site.phone}</a> to securely process the {depositDisplay} deposit through eProcessing Network.</p>
       <p className="mt-2 text-sm text-form-muted">Never send a card number, expiration date, or security code by email or text.</p>
     </div>
   );
@@ -57,12 +59,14 @@ export function BookingForm() {
     <form noValidate onSubmit={submit} className="space-y-8 rounded-2xl border border-form-border bg-form-surface p-5 text-form-foreground shadow-2xl shadow-black/40 sm:p-8">
       <Section title="Accepted quote">
         <Grid>
-          <Field label="Quote or order number" error={errors.quoteNumber}><input className={inputClass} value={data.quoteNumber} onChange={(e)=>update("quoteNumber",e.target.value)} /></Field>
-          <Field label="Accepted total shipment price" error={errors.totalPrice}><input className={inputClass} inputMode="decimal" placeholder="$0.00" value={data.totalPrice} onChange={(e)=>update("totalPrice",e.target.value.replace(/[^0-9.]/g,""))} /></Field>
-          <Field label="Requested pickup date" error={errors.pickupDate}><input className={inputClass} type="date" value={data.pickupDate} onChange={(e)=>update("pickupDate",e.target.value)} /></Field>
+          <Field label="Quote or order number" error={errors.quoteNumber}><input className={inputClass} readOnly={prepared} value={data.quoteNumber} onChange={(e)=>update("quoteNumber",e.target.value)} /></Field>
+          <Field label="Accepted total shipment price" error={errors.totalPrice}><input className={inputClass} readOnly={prepared} inputMode="decimal" placeholder="$0.00" value={data.totalPrice} onChange={(e)=>update("totalPrice",e.target.value.replace(/[^0-9.]/g,""))} /></Field>
+          <Field label="Deposit amount" error={errors.depositAmount}><input className={inputClass} readOnly={prepared} inputMode="decimal" placeholder="$0.00" value={data.depositAmount} onChange={(e)=>update("depositAmount",e.target.value.replace(/[^0-9.]/g,""))} /></Field>
+          <Field label="Requested pickup date" error={errors.pickupDate}><input className={inputClass} readOnly={prepared} type="date" value={data.pickupDate} onChange={(e)=>update("pickupDate",e.target.value)} /></Field>
         </Grid>
+        {prepared && <p className="mb-4 text-xs font-semibold text-form-muted">These quote details were prepared by Moto Relay. Contact us if anything needs to change.</p>}
         <div className="mt-4 rounded-lg border border-form-border bg-white p-4 text-sm">
-          <div className="flex justify-between"><span>Deposit due to complete booking</span><strong>$250.00</strong></div>
+          <div className="flex justify-between"><span>Deposit due to complete booking</span><strong>{depositDisplay}</strong></div>
           <div className="mt-2 flex justify-between border-t border-form-border pt-2"><span>Remaining shipment balance</span><strong>{balance === null ? "Enter total price above" : balance.toLocaleString("en-US",{style:"currency",currency:"USD"})}</strong></div>
         </div>
       </Section>
@@ -90,7 +94,7 @@ export function BookingForm() {
       </Section>
 
       <Section title="Authorization">
-        <p className="text-sm leading-6">I confirm that the shipment information and accepted total price above are accurate. I understand that a $250 deposit is required to complete this booking and that the remaining shipment balance equals the accepted total price minus $250. Card details will be provided separately and processed securely through eProcessing Network.</p>
+        <p className="text-sm leading-6">I confirm that the shipment information and accepted total price above are accurate. I understand that a {depositDisplay} deposit is required to complete this booking and that the remaining shipment balance equals the accepted total price minus that deposit. Card details will be provided separately and processed securely through eProcessing Network.</p>
         <label className="mt-4 flex gap-3 text-sm font-semibold"><input type="checkbox" checked={data.accepted==="yes"} onChange={(e)=>update("accepted",e.target.checked?"yes":"")} /> I have read and accept the booking terms.</label>
         {errors.accepted && <p className="mt-1 text-xs font-medium text-form-error">{errors.accepted}</p>}
         <div className="mt-4 max-w-md"><Text field="signature" label="Electronic signature (type your full legal name)" data={data} errors={errors} update={update} /></div>
@@ -99,7 +103,7 @@ export function BookingForm() {
       <div className="hidden"><label>Website<input name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e)=>setWebsite(e.target.value)} /></label></div>
       {sendError && <p role="alert" className="text-sm font-semibold text-form-error">{sendError}</p>}
       <Button type="submit" disabled={sending}>{sending ? "Sending…" : "Submit booking information"}</Button>
-      <p className="text-xs text-form-muted">Submitting this form does not transmit or charge a card. Moto Relay will process the $250 deposit separately through eProcessing Network.</p>
+      <p className="text-xs text-form-muted">Submitting this form does not transmit or charge a card. Moto Relay will process the {depositDisplay} deposit separately through eProcessing Network.</p>
     </form>
   );
 }
