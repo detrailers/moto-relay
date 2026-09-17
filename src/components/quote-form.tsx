@@ -4,7 +4,12 @@ import { useId, useState } from "react";
 import { VEHICLE_TYPES } from "@/lib/site";
 import { Button } from "@/components/button";
 import { cn } from "@/lib/cn";
-import { trackAnalyticsEvent, trackMetaPixelEvent } from "@/lib/analytics";
+import {
+  trackAnalyticsEvent,
+  trackGoogleAdsConversion,
+  trackMetaPixelEvent,
+  trackMicrosoftEvent,
+} from "@/lib/analytics";
 import { validateStepOne, validateStepTwo, type QuoteFormData, type YesNo, type Transport } from "@/lib/quote-validation";
 
 type FormState = QuoteFormData;
@@ -75,6 +80,10 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
         if (!website) {
           trackAnalyticsEvent("generate_lead", { lead_source: "quote_form" });
           trackMetaPixelEvent("Lead");
+          trackGoogleAdsConversion(process.env.NEXT_PUBLIC_GOOGLE_ADS_QUOTE_SEND_TO, {
+            lead_source: "quote_form",
+          });
+          trackMicrosoftEvent("generate_lead", { lead_source: "quote_form" });
         }
         setSubmitted(true);
       } else {

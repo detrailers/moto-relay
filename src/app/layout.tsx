@@ -9,6 +9,8 @@ import { site } from "@/lib/site";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const oswald = Oswald({ variable: "--font-oswald", subsets: ["latin"], weight: ["500", "600", "700"] });
+const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+const microsoftUetTagId = process.env.NEXT_PUBLIC_MICROSOFT_UET_TAG_ID;
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -89,6 +91,16 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-XRMMCCNC97');`}
         </Script>
+        {googleAdsId ? (
+          <Script id="google-ads" strategy="afterInteractive">
+            {`gtag('config', '${googleAdsId}');`}
+          </Script>
+        ) : null}
+        {microsoftUetTagId ? (
+          <Script id="microsoft-uet" strategy="afterInteractive">
+            {`(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[];f=function(){var o={ti:"${microsoftUetTagId}",enableAutoSpaTracking:true};o.q=w[u];w[u]=new UET(o);w[u].push("pageLoad")};n=d.createElement(t);n.src=r;n.async=1;n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)};i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");`}
+          </Script>
+        ) : null}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
