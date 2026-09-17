@@ -237,6 +237,10 @@ export default function Page() {
           <Link href="/how-it-works" className="font-semibold text-accent hover:underline">
             how the shipping process works
           </Link>{" "}
+          and our guide to{" "}
+          <Link href="/cross-country-motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            cross-country motorcycle shipping
+          </Link>{" "}
           before sending your details.
         </p>
       </section>

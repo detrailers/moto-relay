@@ -154,6 +154,10 @@ export default function Page() {
           <Link href="/open-vs-enclosed-motorcycle-transport" className="font-semibold text-accent hover:underline">
             open and enclosed transport
           </Link>
+          , or learn what to expect when arranging{" "}
+          <Link href="/cross-country-motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            cross-country motorcycle shipping
+          </Link>
           .
         </p>
       </section>

@@ -7,10 +7,15 @@ import { site } from "@/lib/site";
 const path = "/cross-country-motorcycle-shipping";
 
 export const metadata: Metadata = {
-  title: "Cross-Country Motorcycle Shipping",
+  title: "Cross-Country Motorcycle Shipping | Door-to-Door",
   description:
-    "Door-to-door cross-country motorcycle shipping across the lower 48. Learn how routes, timing, motorcycle condition, and open or enclosed equipment affect transport.",
+    "Ship a motorcycle cross-country with door-to-door open or enclosed transport across the lower 48. Learn about timing, costs, preparation, and delivery.",
   alternates: { canonical: path },
+  openGraph: {
+    title: "Cross-Country Motorcycle Shipping",
+    description: "Door-to-door open and enclosed motorcycle transport across the lower 48 United States.",
+    url: path,
+  },
 };
 
 const FAQS = [
@@ -42,6 +47,7 @@ const FAQS = [
 ];
 
 export default function Page() {
+  const pageUrl = `${site.url}${path}`;
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -65,6 +71,27 @@ export default function Page() {
     })),
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Cross-Country Motorcycle Shipping",
+    description: metadata.description,
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    author: { "@id": `${site.url}/#organization` },
+    publisher: { "@id": `${site.url}/#organization` },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Motorcycle Shipping Guides", item: `${site.url}/motorcycle-shipping-guides` },
+      { "@type": "ListItem", position: 3, name: "Cross-Country Motorcycle Shipping", item: pageUrl },
+    ],
+  };
+
   return (
     <ContentPageLayout
       eyebrow="Nationwide Motorcycle Transport"
@@ -73,6 +100,8 @@ export default function Page() {
       reviewed
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <section className="space-y-3 rounded-md border border-border bg-surface p-5">

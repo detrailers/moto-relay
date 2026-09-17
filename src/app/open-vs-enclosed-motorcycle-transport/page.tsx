@@ -2,12 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { ContentPageLayout } from "@/components/content-page-layout";
+import { site } from "@/lib/site";
+
+const path = "/open-vs-enclosed-motorcycle-transport";
 
 export const metadata: Metadata = {
-  title: "Open vs. Enclosed Motorcycle Transport",
+  title: "Open vs. Enclosed Motorcycle Transport: Which Is Best?",
   description:
-    "Compare open and enclosed motorcycle transport, including weather exposure, trailer fit, vehicle types, route-specific pricing, and when each option makes sense.",
-  alternates: { canonical: "/open-vs-enclosed-motorcycle-transport" },
+    "Compare open vs. enclosed motorcycle transport, including protection, costs, trailer fit, and when each shipping option makes sense for your bike.",
+  alternates: { canonical: path },
+  openGraph: {
+    title: "Open vs. Enclosed Motorcycle Transport",
+    description: "Compare protection, cost factors, trailer fit, and the best uses for open and enclosed motorcycle shipping.",
+    url: path,
+  },
 };
 
 const FAQS = [
@@ -48,6 +56,28 @@ const COMPARISON = [
 ];
 
 export default function Page() {
+  const pageUrl = `${site.url}${path}`;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Open vs. Enclosed Motorcycle Transport: Which Is Best?",
+    description: metadata.description,
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    author: { "@id": `${site.url}/#organization` },
+    publisher: { "@id": `${site.url}/#organization` },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Motorcycle Shipping Guides", item: `${site.url}/motorcycle-shipping-guides` },
+      { "@type": "ListItem", position: 3, name: "Open vs. Enclosed Motorcycle Transport", item: pageUrl },
+    ],
+  };
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -65,6 +95,8 @@ export default function Page() {
       intro="Both can provide door-to-door transportation. The difference is exposure, equipment fit, availability, and what matters most for your vehicle."
       reviewed
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <section className="space-y-3">
