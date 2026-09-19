@@ -41,6 +41,7 @@ export function SiteFooter() {
           <div>
             <h2 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Shipping Guides</h2>
             <ul className="mt-3 space-y-2">
+              <li><Link href="/comparing-motorcycle-shipping-quotes" className="font-semibold text-accent hover:underline">Comparing prices? Here’s what to ask before booking.</Link></li>
               <li>
                 <Link href="/motorcycle-shipping-guides" className="font-semibold text-accent hover:underline">
                   View All Shipping Guides

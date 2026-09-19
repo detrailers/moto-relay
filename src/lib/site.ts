@@ -88,6 +88,7 @@ export const ROUTES: string[] = [
   "/recent-transports",
   "/recent-transports/1974-suzuki-gt750-corinth-to-glendale",
   "/recent-transports/honda-vfr-st-louis-to-new-york",
+  "/comparing-motorcycle-shipping-quotes",
   "/motorcycle-shipping-cost",
   "/prepare-motorcycle-for-shipping",
   "/motorcycle-shipping-faq",

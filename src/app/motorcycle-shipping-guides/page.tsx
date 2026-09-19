@@ -18,6 +18,7 @@ const SECTIONS = [
     title: "Start with the essentials",
     intro: "Understand the service, compare companies, and see how a shipment moves from quote to delivery.",
     links: [
+      { href: "/comparing-motorcycle-shipping-quotes", title: "Comparing Shipping Quotes", description: "Why carrier acceptance matters, what a low quote really means, and what to ask before booking." },
       {
         href: "/motorcycle-shipping",
         title: "Door-to-Door Motorcycle Shipping",

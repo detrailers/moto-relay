@@ -91,6 +91,7 @@ export default function Page() {
         </p>
       </section>
 
+      <p><Link href="/comparing-motorcycle-shipping-quotes" className="font-semibold text-accent hover:underline">Comparing prices? Here’s what to ask before booking.</Link></p>
       <section className="space-y-4">
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
           Five factors that shape your quote
