@@ -1,13 +1,13 @@
 "use client";
 
-import { useId, useState } from "react";
+import { getLeadAttribution, trackSuccessfulLead } from "@/lib/lead-attribution";
+
+import { useId, useRef, useState } from "react";
 import { VEHICLE_TYPES } from "@/lib/site";
 import { Button } from "@/components/button";
 import { cn } from "@/lib/cn";
 import {
-  trackAnalyticsEvent,
   trackGoogleAdsConversion,
-  trackMetaPixelEvent,
   trackMicrosoftEvent,
 } from "@/lib/analytics";
 import { validateStepOne, validateStepTwo, type QuoteFormData, type YesNo, type Transport } from "@/lib/quote-validation";
@@ -48,6 +48,7 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
   // FormState since it isn't a real business field.
   const [website, setWebsite] = useState("");
   const formId = useId();
+  const submissionPending = useRef(false);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setData((prev) => ({ ...prev, [key]: value }));
@@ -63,27 +64,33 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (submissionPending.current || submitted) return;
     const stepTwoErrors = validateStepTwo(data);
     setErrors(stepTwoErrors);
     if (Object.keys(stepTwoErrors).length > 0) return;
 
+    submissionPending.current = true;
+    const attribution = getLeadAttribution();
     setSending(true);
     setSendError(null);
     try {
       const res = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, website }),
+        body: JSON.stringify({ ...data, website, attribution }),
       });
       const result: { ok: boolean } = await res.json();
       if (res.ok && result.ok) {
         if (!website) {
-          trackAnalyticsEvent("generate_lead", { lead_source: "quote_form" });
-          trackMetaPixelEvent("Lead");
-          trackGoogleAdsConversion(process.env.NEXT_PUBLIC_GOOGLE_ADS_QUOTE_SEND_TO, {
-            lead_source: "quote_form",
-          });
-          trackMicrosoftEvent("generate_lead", { lead_source: "quote_form" });
+          trackSuccessfulLead("quote_form", attribution);
+          try {
+            trackGoogleAdsConversion(process.env.NEXT_PUBLIC_GOOGLE_ADS_QUOTE_SEND_TO, {
+              lead_source: "quote_form",
+            });
+          } catch { /* A blocked ad tag must not turn a sent quote into an error. */ }
+          try {
+            trackMicrosoftEvent("generate_lead", { lead_source: "quote_form" });
+          } catch { /* The quote has already been delivered. */ }
         }
         setSubmitted(true);
       } else {
@@ -92,6 +99,7 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
     } catch {
       setSendError("We couldn't send your quote request. Check your connection and try again.");
     } finally {
+      submissionPending.current = false;
       setSending(false);
     }
   }

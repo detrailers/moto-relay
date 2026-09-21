@@ -1,3 +1,4 @@
+import { LeadAttributionCapture } from "@/components/lead-attribution-capture";
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 import Script from "next/script";
@@ -120,6 +121,7 @@ fbq('track', 'PageView');`}
             alt=""
           />
         </noscript>
+        <LeadAttributionCapture />
         <AnalyticsEvents />
         <script
           type="application/ld+json"

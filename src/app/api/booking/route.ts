@@ -1,3 +1,4 @@
+import { attributionRows } from "@/lib/lead-attribution";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { BOOKING_FIELD_MAX_LENGTH, BOOKING_NOTES_MAX_LENGTH, validateBooking, type BookingFormData } from "@/lib/booking-validation";
@@ -33,6 +34,8 @@ export async function POST(request: Request) {
     `Delivery contact: ${data.deliveryContact}`,`Delivery address: ${data.deliveryAddress}, ${data.deliveryCity}, ${data.deliveryState} ${data.deliveryZip}`,`Delivery phone: ${data.deliveryPhone}`,`Delivery alternate: ${data.deliveryAlternatePhone||"None"}`,"",
     `Vehicle 1: ${data.vehicleOne} — ${data.vehicleOneColor}`,`Vehicle 2: ${data.vehicleTwo?`${data.vehicleTwo} — ${data.vehicleTwoColor||"color not provided"}`:"None"}`,`Transport type: ${data.transportType}`,`Runs: ${data.runs}`,`Rolls: ${data.rolls}`,`Notes: ${data.notes||"None"}`,`Referral: ${data.referralSource||"Not provided"}`,"",`Accepted by electronic signature: ${data.signature}`,
     `PAYMENT NOTE: No card data was collected. Contact the customer to process the $${deposit.toFixed(2)} deposit through eProcessing Network.`,
+    "",
+    ...attributionRows(body.attribution).map(([label, value]) => `${label}: ${value}`),
   ];
   const resend=new Resend(apiKey);
   const {error}=await resend.emails.send({from:"Moto Relay Bookings <quotes@send.motorelaytransport.com>",to:recipient,replyTo:data.customerEmail,subject:`Shipment booking — ${data.quoteNumber} — ${data.vehicleOne}`,text:lines.join("\n")});

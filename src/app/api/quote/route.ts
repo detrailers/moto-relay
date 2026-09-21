@@ -1,3 +1,4 @@
+import { attributionRows } from "@/lib/lead-attribution";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import {
@@ -97,6 +98,8 @@ export async function POST(request: Request) {
     `Name: ${data.name}`,
     `Phone: ${data.phone}`,
     `Email: ${data.email}`,
+    "",
+    ...attributionRows(record.attribution).map(([label, value]) => `${label}: ${value}`),
   ].join("\n");
 
   try {

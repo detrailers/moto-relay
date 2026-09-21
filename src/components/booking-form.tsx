@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { getLeadAttribution, trackSuccessfulLead } from "@/lib/lead-attribution";
+
+import { FormEvent, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/button";
 import { validateBooking, type BookingErrors, type BookingFormData } from "@/lib/booking-validation";
 import { site } from "@/lib/site";
@@ -21,6 +23,7 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
   const [submitted, setSubmitted] = useState(false);
   const [sendError, setSendError] = useState("");
   const [website, setWebsite] = useState("");
+  const submissionPending = useRef(false);
   const balance = useMemo(() => {
     const total = Number(data.totalPrice);
     const deposit = Number(data.depositAmount);
@@ -35,16 +38,21 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
 
   async function submit(event: FormEvent) {
     event.preventDefault();
+    if (submissionPending.current || submitted) return;
     const nextErrors = validateBooking(data);
     if (Object.keys(nextErrors).length) { setErrors(nextErrors); return; }
+    submissionPending.current = true;
+    const attribution = getLeadAttribution();
     setSending(true); setSendError("");
     try {
-      const response = await fetch("/api/booking", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...data, website }) });
-      if (!response.ok) throw new Error("send failed");
+      const response = await fetch("/api/booking", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...data, website, attribution }) });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error("send failed");
+      if (!website) trackSuccessfulLead("booking_form", attribution);
       setSubmitted(true);
     } catch {
       setSendError("We couldn't send the booking form. Please try again or call Moto Relay.");
-    } finally { setSending(false); }
+    } finally { submissionPending.current = false; setSending(false); }
   }
 
   if (submitted) return (
