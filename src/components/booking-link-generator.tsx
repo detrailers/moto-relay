@@ -2,13 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { Button } from "@/components/button";
+import { getPaymentLink, supportedDepositAmounts } from "@/lib/payment-links";
 
 const inputClass = "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-sm text-form-foreground placeholder:text-form-muted focus:border-accent";
 
 export function BookingLinkGenerator() {
   const [quote, setQuote] = useState("");
   const [total, setTotal] = useState("");
-  const [deposit, setDeposit] = useState("250");
+  const [deposit, setDeposit] = useState("245");
   const [pickup, setPickup] = useState("");
   const [link, setLink] = useState("");
   const [copied, setCopied] = useState(false);
@@ -22,6 +23,11 @@ export function BookingLinkGenerator() {
     const totalNumber = Number(total), depositNumber = Number(deposit);
     if (!quote.trim() || !pickup || !Number.isFinite(totalNumber) || totalNumber <= 0 || !Number.isFinite(depositNumber) || depositNumber <= 0 || depositNumber > totalNumber) {
       setError("Enter the quote number, total price, valid deposit, and pickup date.");
+      setLink("");
+      return;
+    }
+    if (!getPaymentLink(depositNumber)) {
+      setError(`No secure payment form exists for a $${depositNumber.toFixed(2)} deposit. Use $195, $245, or $295, or create a custom eProcessingNetwork form first.`);
       setLink("");
       return;
     }
@@ -43,7 +49,7 @@ export function BookingLinkGenerator() {
       <div>
         <label className="text-sm font-semibold">Deposit amount<input className={`${inputClass} mt-1.5`} inputMode="decimal" value={deposit} onChange={(event) => setDeposit(event.target.value.replace(/[^0-9.]/g, ""))} /></label>
         <div className="mt-2 flex flex-wrap gap-2">
-          {[150, 200, 250, 300].map((amount) => <button key={amount} type="button" onClick={() => setDeposit(String(amount))} className="rounded-md border border-form-border px-3 py-1.5 text-xs font-bold hover:border-accent hover:text-accent">${amount}</button>)}
+          {supportedDepositAmounts.map((amount) => <button key={amount} type="button" onClick={() => setDeposit(String(amount))} className="rounded-md border border-form-border px-3 py-1.5 text-xs font-bold hover:border-accent hover:text-accent">${amount}</button>)}
         </div>
       </div>
       <label className="text-sm font-semibold">Requested pickup date<input className={`${inputClass} mt-1.5`} type="date" value={pickup} onChange={(event) => setPickup(event.target.value)} /></label>

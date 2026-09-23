@@ -1,17 +1,16 @@
 "use client";
 
-import { getLeadAttribution, trackSuccessfulLead } from "@/lib/lead-attribution";
-
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import { Button } from "@/components/button";
 import { validateBooking, type BookingErrors, type BookingFormData } from "@/lib/booking-validation";
+import { getPaymentLink } from "@/lib/payment-links";
 import { site } from "@/lib/site";
 
 const empty: BookingFormData = {
-  quoteNumber: "", totalPrice: "", depositAmount: "250", pickupDate: "", customerName: "", customerEmail: "", customerPhone: "",
+  quoteNumber: "", totalPrice: "", depositAmount: "245", pickupDate: "", customerName: "", customerEmail: "", customerPhone: "",
   pickupContact: "", pickupAddress: "", pickupCity: "", pickupState: "", pickupZip: "", pickupPhone: "", pickupAlternatePhone: "",
   deliveryContact: "", deliveryAddress: "", deliveryCity: "", deliveryState: "", deliveryZip: "", deliveryPhone: "", deliveryAlternatePhone: "",
-  vehicleOne: "", vehicleOneColor: "", vehicleTwo: "", vehicleTwoColor: "", transportType: "", runs: "", rolls: "", notes: "", referralSource: "", signature: "", accepted: "",
+  vehicleOne: "", vehicleOneColor: "", vehicleTwo: "", vehicleTwoColor: "", runs: "", rolls: "", notes: "", referralSource: "", signature: "", accepted: "",
 };
 
 const inputClass = "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-sm text-form-foreground placeholder:text-form-muted focus:border-accent";
@@ -23,13 +22,13 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
   const [submitted, setSubmitted] = useState(false);
   const [sendError, setSendError] = useState("");
   const [website, setWebsite] = useState("");
-  const submissionPending = useRef(false);
   const balance = useMemo(() => {
     const total = Number(data.totalPrice);
     const deposit = Number(data.depositAmount);
     return Number.isFinite(total) && Number.isFinite(deposit) && total >= deposit ? total - deposit : null;
   }, [data.totalPrice, data.depositAmount]);
   const depositDisplay = Number(data.depositAmount).toLocaleString("en-US", { style: "currency", currency: "USD" });
+  const paymentLink = getPaymentLink(data.depositAmount);
 
   function update(field: keyof BookingFormData, value: string) {
     setData((current) => ({ ...current, [field]: value }));
@@ -38,27 +37,26 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
 
   async function submit(event: FormEvent) {
     event.preventDefault();
-    if (submissionPending.current || submitted) return;
     const nextErrors = validateBooking(data);
     if (Object.keys(nextErrors).length) { setErrors(nextErrors); return; }
-    submissionPending.current = true;
-    const attribution = getLeadAttribution();
     setSending(true); setSendError("");
     try {
-      const response = await fetch("/api/booking", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...data, website, attribution }) });
-      const result = await response.json();
-      if (!response.ok || !result.ok) throw new Error("send failed");
-      if (!website) trackSuccessfulLead("booking_form", attribution);
+      const response = await fetch("/api/booking", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...data, website }) });
+      if (!response.ok) throw new Error("send failed");
       setSubmitted(true);
     } catch {
       setSendError("We couldn't send the booking form. Please try again or call Moto Relay.");
-    } finally { submissionPending.current = false; setSending(false); }
+    } finally { setSending(false); }
   }
 
   if (submitted) return (
     <div role="status" className="rounded-2xl border border-accent bg-form-surface p-8 text-center text-form-foreground">
       <h2 className="font-heading text-2xl font-bold uppercase">Booking information received</h2>
-      <p className="mt-3">Your card has not been charged. Call or text <a className="font-bold text-accent" href={site.phoneHref}>{site.phone}</a> to securely process the {depositDisplay} deposit through eProcessing Network.</p>
+      {paymentLink ? <>
+        <p className="mt-3">Complete your booking by paying the {depositDisplay} deposit securely through eProcessing Network.</p>
+        <div className="mt-6"><Button href={paymentLink} target="_blank" rel="noreferrer">Pay {depositDisplay} secure deposit</Button></div>
+        <p className="mt-3 text-sm text-form-muted">Your shipment information has been received, but your card has not been charged yet.</p>
+      </> : <p className="mt-3">Call or text <a className="font-bold text-accent" href={site.phoneHref}>{site.phone}</a> to securely process the {depositDisplay} deposit through eProcessing Network.</p>}
       <p className="mt-2 text-sm text-form-muted">Never send a card number, expiration date, or security code by email or text.</p>
     </div>
   );
@@ -94,7 +92,6 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
           <Text field="vehicleOneColor" label="Vehicle 1 color" data={data} errors={errors} update={update} />
           <Text field="vehicleTwo" label="Vehicle 2 year, make and model (optional)" data={data} errors={errors} update={update} />
           <Text field="vehicleTwoColor" label="Vehicle 2 color (optional)" data={data} errors={errors} update={update} />
-          <Choice label="Transport type" field="transportType" value={data.transportType} error={errors.transportType} update={update} options={["Open", "Enclosed"]} />
           <Choice label="Does the vehicle run?" field="runs" value={data.runs} error={errors.runs} update={update} />
           <Choice label="Does the vehicle roll freely?" field="rolls" value={data.rolls} error={errors.rolls} update={update} />
         </Grid>
@@ -112,7 +109,7 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
       <div className="hidden"><label>Website<input name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e)=>setWebsite(e.target.value)} /></label></div>
       {sendError && <p role="alert" className="text-sm font-semibold text-form-error">{sendError}</p>}
       <Button type="submit" disabled={sending}>{sending ? "Sending…" : "Submit booking information"}</Button>
-      <p className="text-xs text-form-muted">Submitting this form does not transmit or charge a card. Moto Relay will process the {depositDisplay} deposit separately through eProcessing Network.</p>
+      <p className="text-xs text-form-muted">Submitting this form does not transmit or charge a card. You will continue to eProcessing Network to pay the {depositDisplay} deposit securely.</p>
     </form>
   );
 }
@@ -121,7 +118,7 @@ function Section({title,children}:{title:string;children:React.ReactNode}) { ret
 function Grid({children}:{children:React.ReactNode}) { return <div className="grid gap-4 sm:grid-cols-2">{children}</div>; }
 function Field({label,error,children}:{label:string;error?:string;children:React.ReactNode}) { return <label className="mb-4 block text-sm font-semibold">{label}{<div className="mt-1.5">{children}</div>}{error&&<span className="mt-1 block text-xs text-form-error">{error}</span>}</label>; }
 function Text({field,label,data,errors,update,type="text"}:{field:keyof BookingFormData;label:string;data:BookingFormData;errors:BookingErrors;update:(f:keyof BookingFormData,v:string)=>void;type?:string}) { return <Field label={label} error={errors[field]}><input className={inputClass} type={type} value={data[field]} onChange={(e)=>update(field,e.target.value)} /></Field>; }
-function Choice({label,field,value,error,update,options=["Yes","No"]}:{label:string;field:"transportType"|"runs"|"rolls";value:string;error?:string;update:(f:keyof BookingFormData,v:string)=>void;options?:string[]}) { return <fieldset className="mb-4"><legend className="text-sm font-semibold">{label}</legend><div className="mt-2 flex gap-5">{options.map(x=><label key={x} className="flex gap-2 text-sm"><input type="radio" name={field} checked={value===x} onChange={()=>update(field,x)} />{x}</label>)}</div>{error&&<p className="mt-1 text-xs text-form-error">{error}</p>}</fieldset>; }
+function Choice({label,field,value,error,update}:{label:string;field:"runs"|"rolls";value:string;error?:string;update:(f:keyof BookingFormData,v:string)=>void}) { return <fieldset className="mb-4"><legend className="text-sm font-semibold">{label}</legend><div className="mt-2 flex gap-5">{["Yes","No"].map(x=><label key={x} className="flex gap-2 text-sm"><input type="radio" name={field} checked={value===x} onChange={()=>update(field,x)} />{x}</label>)}</div>{error&&<p className="mt-1 text-xs text-form-error">{error}</p>}</fieldset>; }
 function ContactSection({title,prefix,data,errors,update}:{title:string;prefix:"pickup"|"delivery";data:BookingFormData;errors:BookingErrors;update:(f:keyof BookingFormData,v:string)=>void}) {
   const f=(suffix:string)=>`${prefix}${suffix}` as keyof BookingFormData;
   return <Section title={title}><Grid>
