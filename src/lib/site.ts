@@ -30,8 +30,8 @@ export const site = {
   phoneHref: "tel:+19402681060",
   smsHref: `sms:+19402681060?body=${encodeURIComponent(SMS_PREFILL)}`,
   // Public and quote-recipient email — owner-approved.
-  email: "motorelaytransport@gmail.com",
-  emailHref: "mailto:motorelaytransport@gmail.com",
+  email: "jeff@motorelaytransport.com",
+  emailHref: "mailto:jeff@motorelaytransport.com",
   facebook: "https://www.facebook.com/profile.php?id=61593979203454",
 };
 
