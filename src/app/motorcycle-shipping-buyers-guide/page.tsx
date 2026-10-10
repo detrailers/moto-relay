@@ -34,7 +34,7 @@ const FAQS = [
   {
     question: "When should a motorcycle shipping deposit be due?",
     answer:
-      "Payment practices vary, so ask exactly when a deposit becomes due and what event triggers it. Moto Relay's deposit becomes due after the shipment has been dispatched, not merely to request or receive a quote.",
+      "Payment practices vary, so ask exactly when a deposit becomes due and what event triggers it. Moto Relay's deposit becomes due after you submit the booking form for your accepted quote. No payment is required merely to request or receive a quote.",
   },
 ];
 
@@ -155,7 +155,7 @@ export default function Page() {
         <p>
           Ask when payment becomes due and what event triggers it. “Dispatch” generally means a carrier has been
           assigned and pickup coordination is moving forward. Moto Relay does not require payment merely to request or
-          receive a quote; its deposit becomes due after dispatch.
+          receive a quote; its deposit becomes due after you submit the booking form for your accepted quote.
         </p>
         <p>
           Pickup and delivery windows should also be explained honestly. Routes, equipment, scheduling needs, traffic,

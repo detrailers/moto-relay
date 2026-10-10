@@ -49,7 +49,7 @@ export default function QuotePage() {
           <li>Moto Relay reviews the route, vehicle, condition, timing, and transport preference.</li>
           <li>You receive shipment-specific pricing and an estimated pickup and delivery window.</li>
           <li>If you accept, Moto Relay begins matching the shipment with a suitable DOT-authorized carrier.</li>
-          <li>The deposit becomes due after the shipment is dispatched.</li>
+          <li>After accepting your quote, submit the booking form and pay the deposit securely through eProcessing Network.</li>
         </ol>
         <p className="text-muted-foreground">
           Read the complete{" "}

@@ -109,7 +109,7 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
       </Section>
 
       <Section title="Authorization">
-        <p className="text-sm leading-6">I confirm that the shipment information and accepted total price above are accurate. I understand that a {depositDisplay} deposit is required to complete this booking and that the remaining shipment balance equals the accepted total price minus that deposit. Card details will be provided separately and processed securely through eProcessing Network.</p>
+        <p className="text-sm leading-6">I confirm that the shipment information and accepted total price above are accurate. I understand that a {depositDisplay} deposit is due after I submit this form to complete this booking and that the remaining shipment balance equals the accepted total price minus that deposit. Card details will be provided separately and processed securely through eProcessing Network.</p>
         <label className="mt-4 flex gap-3 text-sm font-semibold"><input type="checkbox" checked={data.accepted==="yes"} onChange={(e)=>update("accepted",e.target.checked?"yes":"")} /> I have read and accept the booking terms.</label>
         {errors.accepted && <p className="mt-1 text-xs font-medium text-form-error">{errors.accepted}</p>}
         <div className="mt-4 max-w-md"><Text field="signature" label="Electronic signature (type your full legal name)" data={data} errors={errors} update={update} /></div>

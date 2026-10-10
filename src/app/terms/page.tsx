@@ -38,7 +38,7 @@ export default function Page() {
           Deposits and payment
         </h2>
         <p>
-          A deposit becomes due once your shipment has been dispatched. No payment is required to request or
+          The deposit becomes due after you submit the booking form for your accepted quote. No payment is required to request or
           receive a quote.
         </p>
       </section>

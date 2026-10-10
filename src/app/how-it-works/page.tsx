@@ -30,12 +30,12 @@ const STEPS = [
   {
     title: "Authorize Moto Relay to arrange transport",
     body:
-      "When you are ready to proceed, confirm the shipment details so Moto Relay can begin matching the route and vehicle with a suitable DOT-authorized carrier.",
+      "When you are ready to proceed, submit the booking form for your accepted quote, then pay the deposit securely through eProcessing Network. Moto Relay can then arrange transport with a suitable DOT-authorized carrier.",
   },
   {
     title: "The shipment is dispatched",
     body:
-      "Dispatch means a carrier has been assigned to the shipment and the transport is being coordinated. The deposit becomes due after dispatch—not merely for requesting or receiving a quote.",
+      "Dispatch means a carrier has been assigned to the shipment and the transport is being coordinated.",
   },
   {
     title: "Confirm door-to-door pickup",
@@ -58,7 +58,7 @@ const FAQS = [
   {
     question: "What does dispatch mean in vehicle shipping?",
     answer:
-      "Dispatch means a suitable carrier has been assigned to the shipment and pickup coordination is moving forward. Moto Relay's deposit becomes due after dispatch, not when a customer merely asks for or receives a quote.",
+      "Dispatch means a suitable carrier has been assigned to the shipment and pickup coordination is moving forward. Moto Relay's deposit is due after the booking form is submitted. No payment is required merely to request or receive a quote.",
   },
   {
     question: "Are motorcycle pickup and delivery dates guaranteed?",

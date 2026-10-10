@@ -67,7 +67,7 @@ export const FAQS: FaqItem[] = [
   {
     question: "When is the deposit due?",
     answer:
-      "A deposit is due once the shipment has been dispatched, not before. No payment is required merely to request or receive a quote.",
+      "The deposit is due after you submit the booking form for your accepted quote. No payment is required merely to request or receive a quote.",
   },
   {
     question: "Is my vehicle insured during transportation?",
