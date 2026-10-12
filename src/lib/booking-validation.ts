@@ -1,3 +1,20 @@
+export const PICKUP_LOCATION_TYPES = ["Residence", "Dealership", "Business", "Auction"] as const;
+export const DELIVERY_LOCATION_TYPES = ["Residence", "Dealership", "Business"] as const;
+export const LOCATION_TYPES = { pickup: PICKUP_LOCATION_TYPES, delivery: DELIVERY_LOCATION_TYPES };
+export type LocationEndpoint = keyof typeof LOCATION_TYPES;
+
+export function isLocationType(value: unknown, endpoint: LocationEndpoint): boolean {
+  return typeof value === "string" && LOCATION_TYPES[endpoint].some((type) => type === value);
+}
+
+// Historical bookings must remain unknown until confirmed with the customer.
+export function locationTypeLabel(value: unknown, endpoint: LocationEndpoint): string {
+  if (isLocationType(value, endpoint)) return value as string;
+  return typeof value === "string" && value.trim()
+    ? `Unrecognized (${value}) — confirm with customer before dispatch`
+    : "Not provided — confirm with customer before dispatch";
+}
+
 export const BOOKING_FIELD_MAX_LENGTH = 180;
 export const BOOKING_NOTES_MAX_LENGTH = 2_000;
 
@@ -9,6 +26,7 @@ export type BookingFormData = {
   customerName: string;
   customerEmail: string;
   customerPhone: string;
+  pickupLocationType: string;
   pickupContact: string;
   pickupAddress: string;
   pickupCity: string;
@@ -16,6 +34,7 @@ export type BookingFormData = {
   pickupZip: string;
   pickupPhone: string;
   pickupAlternatePhone: string;
+  deliveryLocationType: string;
   deliveryContact: string;
   deliveryAddress: string;
   deliveryCity: string;
@@ -62,5 +81,9 @@ export function validateBooking(data: BookingFormData): BookingErrors {
   if (data.transportType && !["Open", "Enclosed"].includes(data.transportType)) errors.transportType = "Choose open or enclosed";
   if (data.runs && !["Yes", "No"].includes(data.runs)) errors.runs = "Choose yes or no";
   if (data.rolls && !["Yes", "No"].includes(data.rolls)) errors.rolls = "Choose yes or no";
+  for (const endpoint of ["pickup", "delivery"] as const) {
+    const field = `${endpoint}LocationType` as const;
+    if (!isLocationType(data[field], endpoint)) errors[field] = `Choose ${LOCATION_TYPES[endpoint].join(", ")}`;
+  }
   return errors;
 }

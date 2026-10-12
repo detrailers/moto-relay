@@ -4,14 +4,14 @@ import { getLeadAttribution, trackSuccessfulLead } from "@/lib/lead-attribution"
 
 import { FormEvent, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/button";
-import { validateBooking, type BookingErrors, type BookingFormData } from "@/lib/booking-validation";
+import { LOCATION_TYPES, validateBooking, type BookingErrors, type BookingFormData } from "@/lib/booking-validation";
 import { getPaymentLink } from "@/lib/payment-links";
 import { site } from "@/lib/site";
 
 const empty: BookingFormData = {
   quoteNumber: "", totalPrice: "", depositAmount: "245", pickupDate: "", customerName: "", customerEmail: "", customerPhone: "",
-  pickupContact: "", pickupAddress: "", pickupCity: "", pickupState: "", pickupZip: "", pickupPhone: "", pickupAlternatePhone: "",
-  deliveryContact: "", deliveryAddress: "", deliveryCity: "", deliveryState: "", deliveryZip: "", deliveryPhone: "", deliveryAlternatePhone: "",
+  pickupLocationType: "", pickupContact: "", pickupAddress: "", pickupCity: "", pickupState: "", pickupZip: "", pickupPhone: "", pickupAlternatePhone: "",
+  deliveryLocationType: "", deliveryContact: "", deliveryAddress: "", deliveryCity: "", deliveryState: "", deliveryZip: "", deliveryPhone: "", deliveryAlternatePhone: "",
   vehicleOne: "", vehicleOneColor: "", vehicleTwo: "", vehicleTwoColor: "", transportType: "", runs: "", rolls: "", notes: "", referralSource: "", signature: "", accepted: "",
 };
 
@@ -130,7 +130,15 @@ function Text({field,label,data,errors,update,type="text"}:{field:keyof BookingF
 function Choice({label,field,value,error,update,options=["Yes","No"]}:{label:string;field:"transportType"|"runs"|"rolls";value:string;error?:string;update:(f:keyof BookingFormData,v:string)=>void;options?:string[]}) { return <fieldset className="mb-4"><legend className="text-sm font-semibold">{label}</legend><div className="mt-2 flex gap-5">{options.map(x=><label key={x} className="flex gap-2 text-sm"><input type="radio" name={field} checked={value===x} onChange={()=>update(field,x)} />{x}</label>)}</div>{error&&<p className="mt-1 text-xs text-form-error">{error}</p>}</fieldset>; }
 function ContactSection({title,prefix,data,errors,update}:{title:string;prefix:"pickup"|"delivery";data:BookingFormData;errors:BookingErrors;update:(f:keyof BookingFormData,v:string)=>void}) {
   const f=(suffix:string)=>`${prefix}${suffix}` as keyof BookingFormData;
+  const locationField = `${prefix}LocationType` as const;
   return <Section title={title}><Grid>
+    <Field label={`${prefix === "pickup" ? "Pickup" : "Delivery"} location type (required)`} error={errors[locationField]}>
+      <select name={locationField} required aria-invalid={Boolean(errors[locationField])} aria-describedby={errors[locationField] ? `${locationField}-error` : undefined} className={inputClass} value={data[locationField]} onChange={(e)=>update(locationField,e.target.value)}>
+        <option value="" disabled>Select location type</option>
+        {LOCATION_TYPES[prefix].map((type)=><option key={type} value={type}>{type}</option>)}
+      </select>
+      {errors[locationField] && <span id={`${locationField}-error`} className="sr-only">{errors[locationField]}</span>}
+    </Field>
     <Text field={f("Contact")} label="Contact name" data={data} errors={errors} update={update} />
     <Text field={f("Phone")} label="Best phone" data={data} errors={errors} update={update} />
     <Text field={f("AlternatePhone")} label="Alternate phone (optional)" data={data} errors={errors} update={update} />
