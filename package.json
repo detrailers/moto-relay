@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "indexnow": "node scripts/submit-indexnow.mjs",
-    "test:booking": "node scripts/test-booking.cjs"
+    "test:booking": "node scripts/test-booking.cjs",
+    "test:quote-sms": "node scripts/test-quote-sms.cjs"
   },
   "dependencies": {
     "next": "16.3.3",

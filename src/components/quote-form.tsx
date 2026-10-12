@@ -5,6 +5,7 @@ import { getLeadAttribution, trackSuccessfulLead } from "@/lib/lead-attribution"
 import { useId, useRef, useState } from "react";
 import { VEHICLE_TYPES } from "@/lib/site";
 import { Button } from "@/components/button";
+import { prepareQuoteSms, validateSmsQuote } from "@/lib/quote-sms";
 import { cn } from "@/lib/cn";
 import {
   trackGoogleAdsConversion,
@@ -37,7 +38,8 @@ const radioBase =
 const fieldBase =
   "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-sm text-form-foreground placeholder:text-form-muted focus:border-accent";
 
-export function QuoteForm({ heading }: { heading?: string } = {}) {
+export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?: "email" | "text" } = {}) {
+  const [sms, setSms] = useState<ReturnType<typeof prepareQuoteSms>>(null);
   const [step, setStep] = useState<1 | 2>(1);
   const [data, setData] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Errors>({});
@@ -57,9 +59,12 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
 
   function handleContinue(e: React.FormEvent) {
     e.preventDefault();
-    const stepOneErrors = validateStepOne(data);
+    const stepOneErrors = mode === "text" ? validateSmsQuote(data) : validateStepOne(data);
     setErrors(stepOneErrors);
-    if (Object.keys(stepOneErrors).length === 0) setStep(2);
+    if (Object.keys(stepOneErrors).length === 0) {
+      if (mode === "text") setSms(prepareQuoteSms(data));
+      else setStep(2);
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -104,6 +109,19 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
     }
   }
 
+  if (mode === "text" && sms) return (
+    <div className="rounded-2xl border border-accent bg-form-surface p-5 text-form-foreground sm:p-6">
+      <h2 className="font-heading text-xl font-bold uppercase">Your quote text is ready</h2>
+      <p className="mt-3 text-sm">Review your details below, then open your messaging app and tap Send. Nothing has been sent yet.</p>
+      <pre className="my-5 whitespace-pre-wrap break-words rounded-lg border border-form-border p-4 font-sans text-sm">{sms.body}</pre>
+      <div className="flex flex-wrap gap-3">
+        <Button type="button" variant="secondary-on-light" onClick={()=>setSms(null)}>Edit details</Button>
+        <Button href={sms.href}>Open text message</Button>
+      </div>
+      <p className="mt-4 text-xs text-form-muted">Use a device with a messaging app. You can also <a href="/quote" className="underline">request a quote online</a>.</p>
+    </div>
+  );
+
   if (submitted) {
     return (
       <div role="status" className="relative overflow-hidden rounded-2xl border border-accent bg-form-surface p-8 text-center shadow-2xl shadow-black/50">
@@ -128,7 +146,7 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
           {heading}
         </h2>
       )}
-      <ol className="mb-5 grid grid-cols-2 gap-1.5 rounded-lg bg-black/[0.06] p-1.5">
+      {mode === "email" ? <ol className="mb-5 grid grid-cols-2 gap-1.5 rounded-lg bg-black/[0.06] p-1.5">
         <li
           className={cn(
             "flex items-center justify-center gap-2 rounded-md py-2 text-[11px] font-bold uppercase tracking-wide transition-colors sm:text-xs",
@@ -151,27 +169,32 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
           </span>
           Your Information
         </li>
-      </ol>
+      </ol> : <div className="mb-5">
+        <h2 className="font-heading text-xl font-bold uppercase text-form-foreground">Text for a Quote</h2>
+        <p className="mt-2 text-sm text-form-muted">Complete all shipment details below before opening your text message. Notes are optional; no email address is needed.</p>
+      </div>}
 
       {step === 1 ? (
         <form noValidate onSubmit={handleContinue} className="space-y-4">
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field id={`${formId}-pickup`} label="Pickup" error={errors.pickup}>
+            <Field id={`${formId}-pickup`} label={mode === "text" ? "Pickup ZIP code (required)" : "Pickup"} error={errors.pickup}>
               <input
                 id={`${formId}-pickup`}
                 className={fieldBase}
-                placeholder="ZIP code or city, state"
+                placeholder={mode === "text" ? "e.g. 75001 or 75001-1234" : "ZIP code or city, state"}
+                inputMode={mode === "text" ? "numeric" : undefined}
                 value={data.pickup}
                 onChange={(e) => update("pickup", e.target.value)}
                 aria-invalid={!!errors.pickup}
                 aria-describedby={errors.pickup ? `${formId}-pickup-error` : undefined}
               />
             </Field>
-            <Field id={`${formId}-delivery`} label="Delivery" error={errors.delivery}>
+            <Field id={`${formId}-delivery`} label={mode === "text" ? "Delivery ZIP code (required)" : "Delivery"} error={errors.delivery}>
               <input
                 id={`${formId}-delivery`}
                 className={fieldBase}
-                placeholder="ZIP code or city, state"
+                placeholder={mode === "text" ? "e.g. 75001 or 75001-1234" : "ZIP code or city, state"}
+                inputMode={mode === "text" ? "numeric" : undefined}
                 value={data.delivery}
                 onChange={(e) => update("delivery", e.target.value)}
                 aria-invalid={!!errors.delivery}
@@ -293,7 +316,7 @@ export function QuoteForm({ heading }: { heading?: string } = {}) {
           </Field>
 
           <Button type="submit" className="w-full sm:w-auto">
-            Continue for My Quote
+            {mode === "text" ? "Review text message" : "Continue for My Quote"}
           </Button>
         </form>
       ) : (

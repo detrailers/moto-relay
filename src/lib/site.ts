@@ -3,17 +3,6 @@
 // metadata, schema and shared components, so anything added here is treated
 // as a real, published claim.
 
-// Prefilled SMS body for every "Text for a Quote" CTA. Keep this to the
-// blank template only — no marketing copy in the message body.
-const SMS_PREFILL = `Hi, I'd like a Moto Relay shipping quote.
-
-Pickup:
-Delivery:
-Year/Make/Model:
-Open / Enclosed / Both:
-Runs:
-Rolls:`;
-
 export const site = {
   name: "Moto Relay",
   parentCompany: "Texas Moto Worx",
@@ -28,7 +17,8 @@ export const site = {
   // component that calls/texts reads from here.
   phone: "(940) 268-1060",
   phoneHref: "tel:+19402681060",
-  smsHref: `sms:+19402681060?body=${encodeURIComponent(SMS_PREFILL)}`,
+  smsHref: "sms:+19402681060",
+  textQuoteHref: "/quote?mode=text",
   // Public and quote-recipient email — owner-approved.
   email: "jeff@motorelaytransport.com",
   emailHref: "mailto:jeff@motorelaytransport.com",

@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/quote" },
 };
 
-export default function QuotePage() {
+export default async function QuotePage({ searchParams }: PageProps<"/quote">) {
+  const mode = (await searchParams).mode === "text" ? "text" : "email";
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
       <h1 className="text-center font-heading text-3xl font-bold uppercase tracking-wide text-foreground sm:text-4xl">
@@ -35,11 +36,11 @@ export default function QuotePage() {
       </section>
       <p className="mt-6 text-center"><Link href="/comparing-motorcycle-shipping-quotes" className="font-semibold text-accent hover:underline">Comparing prices? Here’s what to ask before booking.</Link></p>
       <div className="mt-8">
-        <QuoteForm />
+        <QuoteForm key={mode} mode={mode} />
       </div>
-      <div className="mt-10">
+      {mode === "email" && <div className="mt-10">
         <TextQuoteCta />
-      </div>
+      </div>}
 
       <section className="mt-12 space-y-4 border-t border-border pt-10">
         <h2 className="font-heading text-xl font-bold uppercase tracking-wide text-foreground">
