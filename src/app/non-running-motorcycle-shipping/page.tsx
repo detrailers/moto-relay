@@ -65,6 +65,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "Non-Running Motorcycle Shipping", href: "/non-running-motorcycle-shipping" }]}
       eyebrow="Motorcycle Shipping Guide"
       title="Non-Running Motorcycle Shipping"
       intro="Yes, a motorcycle that does not run can be shipped—provided it still rolls freely and its condition is disclosed before pickup."

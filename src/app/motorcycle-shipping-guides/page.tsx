@@ -145,6 +145,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }]}
       eyebrow="Moto Relay Resource Center"
       title="Motorcycle Shipping Guides"
       intro="Clear answers for planning door-to-door motorcycle transport—from choosing equipment and verifying insurance to preparing the motorcycle and coordinating delivery."

@@ -65,6 +65,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "Door-to-Door vs. Depot-to-Depot Motorcycle Transport", href: "/door-to-door-vs-depot-motorcycle-transport" }]}
       eyebrow="Shipping Guide"
       title="Door-to-Door vs. Depot-to-Depot Motorcycle Transport"
       intro="Door-to-door shipping is the more direct, convenient choice—and it is the service Moto Relay provides."

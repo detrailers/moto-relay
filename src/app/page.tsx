@@ -6,7 +6,7 @@ import { QuoteForm } from "@/components/quote-form";
 import { site, VEHICLE_TYPES } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Nationwide Motorcycle & Powersports Shipping",
+  title: { absolute: "Nationwide Motorcycle & Powersports Shipping | Moto Relay" },
   description:
     "Door-to-door motorcycle, ATV, UTV and trike shipping across the lower 48 states. Open and enclosed transport with route-specific quotes.",
   alternates: { canonical: "/" },

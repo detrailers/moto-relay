@@ -86,6 +86,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "How to Prepare a Motorcycle for Shipping", href: "/prepare-motorcycle-for-shipping" }]}
       eyebrow="Pickup Checklist"
       title="How to Prepare a Motorcycle for Shipping"
       intro="A little preparation makes pickup easier, documents your motorcycle's condition, and helps prevent avoidable delays."

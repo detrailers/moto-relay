@@ -69,6 +69,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "Motorcycle Shipping Cost", href: "/motorcycle-shipping-cost" }]}
       eyebrow="Pricing Guide"
       title="Motorcycle Shipping Cost"
       intro="There is no honest one-price-fits-all answer. Your route, motorcycle, timing, and transport type determine the quote."

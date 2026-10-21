@@ -82,18 +82,9 @@ export default function Page() {
     publisher: { "@id": `${site.url}/#organization` },
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
-      { "@type": "ListItem", position: 2, name: "Motorcycle Shipping Guides", item: `${site.url}/motorcycle-shipping-guides` },
-      { "@type": "ListItem", position: 3, name: "Cross-Country Motorcycle Shipping", item: pageUrl },
-    ],
-  };
-
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "Cross-Country Motorcycle Shipping", href: "/cross-country-motorcycle-shipping" }]}
       eyebrow="Nationwide Motorcycle Transport"
       title="Cross-Country Motorcycle Shipping"
       intro="Door-to-door motorcycle transport across the lower 48, planned and quoted for the actual route rather than a generic national estimate."
@@ -101,7 +92,6 @@ export default function Page() {
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <section className="space-y-3 rounded-md border border-border bg-surface p-5">

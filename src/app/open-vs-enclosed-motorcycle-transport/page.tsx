@@ -68,16 +68,6 @@ export default function Page() {
     publisher: { "@id": `${site.url}/#organization` },
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
-      { "@type": "ListItem", position: 2, name: "Motorcycle Shipping Guides", item: `${site.url}/motorcycle-shipping-guides` },
-      { "@type": "ListItem", position: 3, name: "Open vs. Enclosed Motorcycle Transport", item: pageUrl },
-    ],
-  };
-
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -90,13 +80,13 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "Open vs. Enclosed Motorcycle Transport", href: "/open-vs-enclosed-motorcycle-transport" }]}
       eyebrow="Transport Guide"
       title="Open vs. Enclosed Motorcycle Transport"
       intro="Both can provide door-to-door transportation. The difference is exposure, equipment fit, availability, and what matters most for your vehicle."
       reviewed
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <section className="space-y-3">

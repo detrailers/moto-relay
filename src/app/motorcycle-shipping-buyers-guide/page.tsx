@@ -64,6 +64,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "How to Choose a Motorcycle Shipping Company", href: "/motorcycle-shipping-buyers-guide" }]}
       eyebrow="Buyer’s Guide"
       title="How to Choose a Motorcycle Shipping Company"
       intro="Verify who is arranging and transporting your motorcycle, understand the quote, and get the important details in writing before pickup."

@@ -68,6 +68,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "Motorcycle Shipping Insurance: What to Verify Before Pickup", href: "/motorcycle-shipping-insurance" }]}
       eyebrow="Before-You-Ship Guide"
       title="Motorcycle Shipping Insurance: What to Verify Before Pickup"
       intro="“We have insurance” is not enough information. Review the assigned carrier, the actual insurance documentation, and whether the coverage applies to motorcycles before pickup."

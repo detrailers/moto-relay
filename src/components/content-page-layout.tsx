@@ -1,12 +1,15 @@
 import Link from "next/link";
+import { Breadcrumbs, type BreadcrumbItem } from "@/components/breadcrumbs";
 
 export function ContentPageLayout({
+  breadcrumbs,
   eyebrow,
   title,
   intro,
   reviewed = false,
   children,
 }: {
+  breadcrumbs?: BreadcrumbItem[];
   eyebrow?: string;
   title: string;
   intro?: string;
@@ -15,6 +18,7 @@ export function ContentPageLayout({
 }) {
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
       {eyebrow && (
         <p className="text-xs font-bold uppercase tracking-widest text-accent">{eyebrow}</p>
       )}

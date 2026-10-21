@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <ContentPageLayout eyebrow="Comparing Shipping Quotes" title={title}
+    <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: title, href: "/comparing-motorcycle-shipping-quotes" }]} eyebrow="Comparing Shipping Quotes" title={title}
       intro="A low quote is only a good deal if your motorcycle gets moved.">
       <section className="space-y-3 rounded-lg border border-border bg-surface p-5"><h2 className="font-heading text-xl font-bold uppercase tracking-wide text-foreground">Price matters. So does getting your vehicle moved.</h2><p>We know cost is a big part of your decision, and we want you to get your motorcycle moved at the best price available. A lower quote can be appealing—but will a carrier accept the job at that price?</p><p>If the price doesn’t attract a carrier, you could end up waiting longer or being asked to pay more. Before you book, make sure you understand what’s behind the number and what happens if no carrier accepts it.</p></section>
       <section className="space-y-3"><h2 className="font-heading text-xl font-bold uppercase tracking-wide text-foreground">A quote and a carrier commitment are different steps</h2><p>When you compare motorcycle shipping quotes, it’s natural to focus on the price. But there’s another question worth asking: has a carrier agreed to transport your motorcycle at that price?</p><p>A quote is an estimate or offer from the company arranging your shipment. Carrier acceptance is a separate step. Until a carrier commits, a low number doesn’t necessarily mean your transportation is arranged.</p><p>Making a shipment available on a shipping network lets carriers consider the job. It does not, by itself, mean that a carrier has accepted it or that pickup is confirmed.</p></section>

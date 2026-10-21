@@ -67,6 +67,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "Classic, Custom & Restored Motorcycle Shipping", href: "/classic-custom-restored-motorcycle-shipping" }]}
       eyebrow="Specialized Motorcycle Shipping"
       title="Classic, Custom & Restored Motorcycle Shipping"
       intro="Door-to-door transport planned around the actual motorcycle, its condition, its modifications, and the protection that matters to its owner."

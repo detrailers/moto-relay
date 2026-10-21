@@ -67,6 +67,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping Guides", href: "/motorcycle-shipping-guides" }, { name: "Shipping a Motorcycle After an Online Purchase or Auction", href: "/motorcycle-shipping-after-online-purchase-auction" }]}
       eyebrow="Motorcycle Buying & Shipping Guide"
       title="Shipping a Motorcycle After an Online Purchase or Auction"
       intro="Bought a motorcycle from a private seller, dealer, marketplace, or auction? The next step is coordinating a release-ready pickup with accurate contacts and motorcycle details."
