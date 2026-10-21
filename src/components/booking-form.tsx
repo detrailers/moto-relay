@@ -15,7 +15,7 @@ const empty: BookingFormData = {
   vehicleOne: "", vehicleOneColor: "", vehicleTwo: "", vehicleTwoColor: "", transportType: "", runs: "", rolls: "", notes: "", referralSource: "", signature: "", accepted: "",
 };
 
-const inputClass = "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-sm text-form-foreground placeholder:text-form-muted focus:border-accent";
+const inputClass = "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-base text-form-foreground placeholder:text-form-muted focus:border-accent";
 
 export function BookingForm({ initialValues, prepared = false }: { initialValues?: Partial<BookingFormData>; prepared?: boolean }) {
   const [data, setData] = useState<BookingFormData>({ ...empty, ...initialValues });

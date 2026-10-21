@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { Button } from "@/components/button";
 import { getPaymentLink, supportedDepositAmounts } from "@/lib/payment-links";
 
-const inputClass = "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-sm text-form-foreground placeholder:text-form-muted focus:border-accent";
+const inputClass = "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-base text-form-foreground placeholder:text-form-muted focus:border-accent";
 
 export function BookingLinkGenerator() {
   const [quote, setQuote] = useState("");

@@ -63,7 +63,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="flex size-10 items-center justify-center rounded-md border border-border text-foreground lg:hidden"
+          className="flex size-11 shrink-0 items-center justify-center rounded-md border border-border text-foreground lg:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -81,7 +81,7 @@ export function SiteHeader() {
 
       <div
         id="mobile-nav"
-        className={cn("border-t border-border lg:hidden", mobileOpen ? "block" : "hidden")}
+        className={cn("max-h-[calc(100dvh-80px)] overflow-y-auto border-t border-border lg:hidden", mobileOpen ? "block" : "hidden")}
       >
         <nav aria-label="Mobile" className="flex flex-col gap-1 px-4 py-4 sm:px-6">
           {primaryNav.map((item) => (

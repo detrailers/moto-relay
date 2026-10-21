@@ -84,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-full flex-col bg-background text-foreground antialiased">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XRMMCCNC97"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
@@ -106,7 +106,7 @@ gtag('config', 'G-XRMMCCNC97');`}
           {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+t.src=v;s=b.getElementsByTagName(e)[0];var load=function(){var add=function(){s.parentNode.insertBefore(t,s)};if('requestIdleCallback' in f){f.requestIdleCallback(add,{timeout:1500})}else{f.setTimeout(add,0)}};if(b.readyState==='complete'){load()}else{f.addEventListener('load',load,{once:true})}}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '932718713224976');
 fbq('track', 'PageView');`}

@@ -41,7 +41,8 @@ export default function HomePage() {
             src="/images/moto-relay-motorcycle-shipping-hero.png"
             alt="Motorcycle being loaded into an enclosed transport trailer"
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             sizes="100vw"
             className="object-cover object-[64%_center]"
           />
@@ -57,7 +58,7 @@ export default function HomePage() {
               <span className="h-1 w-7 -skew-x-12 bg-accent/70" />
             </div>
             <p className="mb-3 text-xs font-black uppercase tracking-[.28em] text-white/65">By Texas Moto Worx</p>
-            <h1 className="font-heading text-[clamp(3.7rem,7vw,7.6rem)] font-black uppercase leading-[.8] tracking-[-.045em] text-white drop-shadow-2xl">
+            <h1 className="font-heading text-[clamp(2.8rem,12vw,3.7rem)] sm:text-[clamp(3.7rem,7vw,7.6rem)] font-black uppercase leading-[.8] tracking-[-.045em] text-white drop-shadow-2xl">
               Nationwide
               <span className="mt-3 block text-accent">Motorcycle</span>
               <span className="block text-accent">Shipping</span>
@@ -135,7 +136,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 flex items-end justify-between gap-6">
             <div>
-              <p className="text-xs font-black uppercase tracking-[.25em] text-accent">What we move</p>
+              <p className="text-xs font-black uppercase tracking-[.25em] text-[#ad3d00]">What we move</p>
               <h2 className="mt-2 font-heading text-4xl font-black uppercase leading-none sm:text-6xl">Vehicles We Ship</h2>
             </div>
             <Link href="/motorcycle-shipping" className="hidden text-sm font-black uppercase tracking-wide text-[#121315] sm:block">Explore services <span className="text-accent">→</span></Link>
@@ -166,7 +167,7 @@ export default function HomePage() {
             <h2 className="mt-2 font-heading text-4xl font-black uppercase leading-[.95] text-white sm:text-6xl">Motorcycle People.<br /><span className="text-white/55">Not Just a Shipping Website.</span></h2>
           </div>
           <div className="flex justify-start lg:justify-end">
-            <Image src="/images/moto-relay-logo.png" alt="Moto Relay by Texas Moto Worx" width={1746} height={901} className="h-auto w-full max-w-[360px]" />
+            <Image src="/images/moto-relay-logo.png" alt="Moto Relay by Texas Moto Worx" width={1746} height={901} sizes="(max-width: 400px) 90vw, 360px" className="h-auto w-full max-w-[360px]" />
           </div>
         </div>
       </section>
@@ -199,7 +200,7 @@ export default function HomePage() {
           <ol className="mt-8 grid gap-px bg-black/20 lg:grid-cols-3">
             {STEPS.map(([number, text]) => (
               <li key={number} className="flex min-h-32 items-center gap-5 bg-accent p-6">
-                <span className="font-heading text-5xl font-black text-black/25">{number}</span>
+                <span className="font-heading text-5xl font-black text-black/65">{number}</span>
                 <span className="font-heading text-xl font-black uppercase leading-tight">{text}</span>
               </li>
             ))}

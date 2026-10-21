@@ -23,7 +23,8 @@ export function Wordmark({
         alt="Moto Relay by Texas Moto Worx"
         width={1746}
         height={901}
-        priority={priority}
+        loading={priority ? "eager" : "lazy"}
+        sizes="(min-width: 1024px) 200px, (min-width: 640px) 170px, 130px"
         className={cn("h-auto w-[130px] sm:w-[170px] lg:w-[200px]", imageClassName)}
       />
     </Link>

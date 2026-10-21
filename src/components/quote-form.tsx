@@ -36,7 +36,7 @@ const radioBase =
   "flex-1 cursor-pointer rounded-md border border-form-border bg-form-input px-4 py-2.5 text-center text-sm font-semibold text-form-foreground transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent has-[:checked]:text-accent-foreground";
 
 const fieldBase =
-  "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-sm text-form-foreground placeholder:text-form-muted focus:border-accent";
+  "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-base text-form-foreground placeholder:text-form-muted focus:border-accent";
 
 export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?: "email" | "text" } = {}) {
   const [sms, setSms] = useState<ReturnType<typeof prepareQuoteSms>>(null);

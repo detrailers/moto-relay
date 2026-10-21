@@ -17,7 +17,7 @@
   --form-surface: #f4f3f1;
   --form-input: #ffffff;
   --form-foreground: #16161a;
-  --form-muted: #6b6b70;
+  --form-muted: #55555b;
   --form-border: #d9d7d3;
   /* Darker than --accent so error text stays AA-readable on the light card. */
   --form-error: #c2410c;
@@ -103,3 +103,8 @@ summary:focus-visible {
   height: 2px;
   background: var(--accent);
 }
+
+html { scroll-padding-top: 96px; }
+#quote { scroll-margin-top: 96px; }
+@media (max-width: 639px) { input:not([type="radio"]):not([type="checkbox"]), select, textarea { font-size: 16px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; } }
