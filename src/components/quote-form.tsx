@@ -33,7 +33,7 @@ const initialState: FormState = {
 };
 
 const radioBase =
-  "flex-1 cursor-pointer rounded-md border border-form-border bg-form-input px-4 py-2.5 text-center text-sm font-semibold text-form-foreground transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent has-[:checked]:text-accent-foreground";
+  "min-h-11 min-w-0 flex-1 cursor-pointer rounded-md border border-form-border bg-form-input px-2 py-2.5 text-center text-sm font-semibold text-form-foreground transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent has-[:checked]:text-accent-foreground";
 
 const fieldBase =
   "w-full rounded-md border border-form-border bg-form-input px-3.5 py-2.5 text-base text-form-foreground placeholder:text-form-muted focus:border-accent";
@@ -162,7 +162,7 @@ export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?
       {mode === "email" ? <ol className="mb-5 grid grid-cols-2 gap-1.5 rounded-lg bg-black/[0.06] p-1.5">
         <li
           className={cn(
-            "flex items-center justify-center gap-2 rounded-md py-2 text-[11px] font-bold uppercase tracking-wide transition-colors sm:text-xs",
+            "flex flex-col items-center justify-center gap-1 rounded-md py-2 text-[11px] min-[360px]:flex-row min-[360px]:gap-2 font-bold uppercase tracking-wide transition-colors sm:text-xs",
             step === 1 ? "bg-accent text-accent-foreground shadow" : "text-form-muted",
           )}
         >
@@ -173,7 +173,7 @@ export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?
         </li>
         <li
           className={cn(
-            "flex items-center justify-center gap-2 rounded-md py-2 text-[11px] font-bold uppercase tracking-wide transition-colors sm:text-xs",
+            "flex flex-col items-center justify-center gap-1 rounded-md py-2 text-[11px] min-[360px]:flex-row min-[360px]:gap-2 font-bold uppercase tracking-wide transition-colors sm:text-xs",
             step === 2 ? "bg-accent text-accent-foreground shadow" : "text-form-muted",
           )}
         >
@@ -297,7 +297,7 @@ export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?
 
           <fieldset>
             <legend className="mb-2 block text-sm font-semibold text-form-foreground">Transport preference</legend>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-3">
               {(["open", "enclosed", "both"] as const).map((option) => (
                 <label key={option} className={radioBase}>
                   <input
