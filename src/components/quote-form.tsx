@@ -2,7 +2,7 @@
 
 import { getLeadAttribution, trackSuccessfulLead } from "@/lib/lead-attribution";
 
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { VEHICLE_TYPES } from "@/lib/site";
 import { Button } from "@/components/button";
 import { prepareQuoteSms, validateSmsQuote } from "@/lib/quote-sms";
@@ -51,6 +51,19 @@ export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?
   const [website, setWebsite] = useState("");
   const formId = useId();
   const submissionPending = useRef(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const previousView = useRef("1:false:false");
+  useEffect(() => {
+    const view = `${step}:${Boolean(sms)}:${submitted}`;
+    if (previousView.current === view) return;
+    previousView.current = view;
+    const card = cardRef.current;
+    if (!card) return;
+    const target = card.querySelector<HTMLElement>('input:not([type="hidden"]), textarea, button') || card;
+    target.focus({ preventScroll: true });
+    card.scrollIntoView({ block: "start", behavior: "instant" });
+  }, [step, sms, submitted]);
+
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setData((prev) => ({ ...prev, [key]: value }));
@@ -110,7 +123,7 @@ export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?
   }
 
   if (mode === "text" && sms) return (
-    <div className="rounded-2xl border border-accent bg-form-surface p-5 text-form-foreground sm:p-6">
+    <div ref={cardRef} tabIndex={-1} className="scroll-mt-24 rounded-2xl border border-accent bg-form-surface p-5 text-form-foreground sm:p-6">
       <h2 className="font-heading text-xl font-bold uppercase">Your quote text is ready</h2>
       <p className="mt-3 text-sm">Review your details below, then open your messaging app and tap Send. Nothing has been sent yet.</p>
       <pre className="my-5 whitespace-pre-wrap break-words rounded-lg border border-form-border p-4 font-sans text-sm">{sms.body}</pre>
@@ -124,7 +137,7 @@ export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?
 
   if (submitted) {
     return (
-      <div role="status" className="relative overflow-hidden rounded-2xl border border-accent bg-form-surface p-8 text-center shadow-2xl shadow-black/50">
+      <div ref={cardRef} tabIndex={-1} role="status" className="scroll-mt-24 relative overflow-hidden rounded-2xl border border-accent bg-form-surface p-8 text-center shadow-2xl shadow-black/50">
         <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-accent" />
         <h3 className="font-heading text-xl font-bold uppercase tracking-wide text-form-foreground">
           Quote request sent
@@ -137,7 +150,7 @@ export function QuoteForm({ heading, mode = "email" }: { heading?: string; mode?
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-form-border bg-form-surface p-5 shadow-2xl shadow-black/50 sm:p-6">
+    <div ref={cardRef} tabIndex={-1} className="scroll-mt-24 relative overflow-hidden rounded-2xl border border-form-border bg-form-surface p-5 shadow-2xl shadow-black/50 sm:p-6">
       {/* Orange top edge ties the light card back to the black/orange hero
           it overlaps, instead of reading as an unrelated white form. */}
       <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-accent" />

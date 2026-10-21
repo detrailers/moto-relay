@@ -37,6 +37,9 @@ export default function HomePage() {
     <main className="overflow-hidden bg-[#08090a]">
       <section className="relative border-b border-white/10">
         <div className="absolute inset-0">
+          <picture>
+            {/* Keep the phone hero lightweight and readable; the photo remains on larger screens. */}
+            <source media="(max-width: 639px)" srcSet="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" />
           <Image
             src="/images/moto-relay-motorcycle-shipping-hero.png"
             alt="Motorcycle being loaded into an enclosed transport trailer"
@@ -44,8 +47,9 @@ export default function HomePage() {
             loading="eager"
             fetchPriority="high"
             sizes="100vw"
-            className="object-cover object-[64%_center]"
+            className="hidden object-cover object-[64%_center] sm:block"
           />
+          </picture>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#08090a_0%,rgba(8,9,10,.97)_28%,rgba(8,9,10,.72)_52%,rgba(8,9,10,.08)_82%)]" />
           <div className="texture-diagonal absolute inset-y-0 left-0 w-[56%] opacity-70" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#08090a] to-transparent" />
