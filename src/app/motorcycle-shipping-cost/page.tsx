@@ -164,6 +164,27 @@ export default function Page() {
         </p>
       </section>
 
+      <section className="space-y-3">
+        <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
+          Real shipments behind the quote factors
+        </h2>
+        <p>These shipment stories illustrate equipment and service priorities, not fixed prices for your route. Neither story publishes a shipping price; request a quote for your own motorcycle and timing.</p>
+        <p>
+          For a fully restored collector bike, protecting its finish guided the choice of enclosed equipment.
+          Read about the{" "}
+          <Link href="/recent-transports/1974-suzuki-gt750-corinth-to-glendale" className="font-semibold text-accent hover:underline">
+            1974 Suzuki GT750 enclosed shipment from Corinth, Texas to Glendale, Arizona
+          </Link>.
+        </p>
+        <p>
+          Crystal wanted responsive communication and carrier insurance confirmation for her Honda VFR.
+          She reported timely pickup and delivery within the quoted window. Read her{" "}
+          <Link href="/recent-transports/honda-vfr-st-louis-to-new-york" className="font-semibold text-accent hover:underline">
+            Honda VFR transport story from St. Louis to New York
+          </Link>.
+        </p>
+      </section>
+
       <section className="space-y-5">
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
           Motorcycle shipping cost questions
