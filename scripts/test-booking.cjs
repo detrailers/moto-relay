@@ -18,7 +18,7 @@ const messages = [];
 let sendError = null;
 const load = Module._load;
 Module._load = function (id, parent, main) {
-  if (id === 'resend') return { Resend: class { emails = { send: async (message) => { messages.push(message); return { error: sendError }; } }; } };
+  if (id === 'resend') return { Resend: class { emails = { send: async (message, options) => { messages.push({ ...message, _options: options }); return { error: sendError }; } }; } };
   return load.call(this, id.startsWith('@/') ? path.join(root, 'src', id.slice(2)) : id, parent, main);
 };
 global.fetch = async () => { throw new Error('Network forbidden in booking tests'); };
@@ -105,7 +105,7 @@ test('rendered booking form has required blank selections, four pickup choices a
 });
 
 test('existing validation, honeypot and provider failure behavior remains intact', async () => {
-  for (const changes of [{ accepted: '' }, { customerEmail: 'bad' }, { depositAmount: '901' }, { totalPrice: '0' }, { transportType: 'Other' }, { pickupAddress: '' }]) {
+  for (const changes of [{ accepted: '' }, { customerEmail: 'bad' }, { depositAmount: '194' }, { depositAmount: '245.001' }, { depositAmount: '1e2' }, { totalPrice: '0' }, { totalPrice: '900.001' }, { totalPrice: '1e3' }, { transportType: 'Other' }, { pickupAddress: '' }]) {
     assert.equal((await post({ ...valid, ...changes })).status, 400);
   }
   const before = messages.length;
@@ -114,4 +114,16 @@ test('existing validation, honeypot and provider failure behavior remains intact
   sendError = { message: 'mock failure' };
   assert.equal((await post(valid)).status, 502);
   sendError = null;
+});
+
+test('identical booking submissions use a stable idempotency key while changed submissions do not collide', async () => {
+  const before = messages.length;
+  assert.equal((await post(valid)).status, 200);
+  assert.equal((await post(valid)).status, 200);
+  const first = messages[before]._options.idempotencyKey;
+  const second = messages[before + 1]._options.idempotencyKey;
+  assert.match(first, /^booking\/[a-f0-9]{64}$/);
+  assert.equal(first, second);
+  assert.equal((await post({ ...valid, notes: 'Different booking details' })).status, 200);
+  assert.notEqual(messages[before + 2]._options.idempotencyKey, first);
 });
