@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { bookingNotificationLines } from "@/lib/booking-notification";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
@@ -28,7 +29,11 @@ export async function POST(request: Request) {
   if (!apiKey||!recipient) return NextResponse.json({ok:false},{status:500});
   const lines = bookingNotificationLines(data, body.attribution);
   const resend=new Resend(apiKey);
-  const {error}=await resend.emails.send({from:"Moto Relay Bookings <quotes@send.motorelaytransport.com>",to:recipient,replyTo:data.customerEmail,subject:`Shipment booking — ${data.quoteNumber} — ${data.vehicleOne}`,text:lines.join("\n")});
+  const idempotencyKey=`booking/${createHash("sha256").update(raw).digest("hex")}`;
+  const {error}=await resend.emails.send(
+    {from:"Moto Relay Bookings <quotes@send.motorelaytransport.com>",to:recipient,replyTo:data.customerEmail,subject:`Shipment booking — ${data.quoteNumber} — ${data.vehicleOne}`,text:lines.join("\n")},
+    {idempotencyKey},
+  );
   if(error) return NextResponse.json({ok:false},{status:502});
   return NextResponse.json({ok:true});
 }
