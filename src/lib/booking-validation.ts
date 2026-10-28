@@ -17,6 +17,8 @@ export function locationTypeLabel(value: unknown, endpoint: LocationEndpoint): s
 
 export const BOOKING_FIELD_MAX_LENGTH = 180;
 export const BOOKING_NOTES_MAX_LENGTH = 2_000;
+const MONEY_PATTERN = /^\d+(?:\.\d{1,2})?$/;
+const SUPPORTED_DEPOSITS = new Set([195, 245, 295]);
 
 export type BookingFormData = {
   quoteNumber: string;
@@ -74,9 +76,14 @@ export function validateBooking(data: BookingFormData): BookingErrors {
   }
   const total = Number(data.totalPrice);
   const deposit = Number(data.depositAmount);
-  if (!Number.isFinite(deposit) || deposit <= 0) errors.depositAmount = "Enter a valid deposit amount";
-  if (!Number.isFinite(total) || total <= 0) errors.totalPrice = "Enter the accepted total price";
-  else if (Number.isFinite(deposit) && deposit > total) errors.depositAmount = "Deposit cannot exceed the total price";
+  if (!MONEY_PATTERN.test(data.depositAmount) || !SUPPORTED_DEPOSITS.has(deposit)) {
+    errors.depositAmount = "Deposit must match the authorized $195, $245, or $295 amount";
+  }
+  if (!MONEY_PATTERN.test(data.totalPrice) || !Number.isFinite(total) || total <= 0) {
+    errors.totalPrice = "Enter the accepted total price in dollars and cents";
+  } else if (Number.isFinite(deposit) && deposit > total) {
+    errors.depositAmount = "Deposit cannot exceed the total price";
+  }
   if (data.accepted !== "yes") errors.accepted = "You must accept the booking terms";
   if (data.transportType && !["Open", "Enclosed"].includes(data.transportType)) errors.transportType = "Choose open or enclosed";
   if (data.runs && !["Yes", "No"].includes(data.runs)) errors.runs = "Choose yes or no";
