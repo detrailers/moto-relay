@@ -8,6 +8,20 @@ export const metadata: Metadata = {
   description:
     "Understand motorcycle shipping costs, the factors that change a quote, and practical ways to control the price of open or enclosed transport.",
   alternates: { canonical: "/motorcycle-shipping-cost" },
+  openGraph: {
+    type: "website",
+    siteName: "Moto Relay",
+    title: "Motorcycle Shipping Cost: What Determines Your Quote",
+    description: "Understand motorcycle shipping costs, the factors that change a quote, and practical ways to control the price of open or enclosed transport.",
+    url: "/motorcycle-shipping-cost",
+    images: ["/images/moto-relay-social-share.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Motorcycle Shipping Cost: What Determines Your Quote",
+    description: "Understand motorcycle shipping costs, the factors that change a quote, and practical ways to control the price of open or enclosed transport.",
+    images: ["/images/moto-relay-social-share.png"],
+  },
 };
 
 const FACTORS = [
@@ -87,7 +101,11 @@ export default function Page() {
           enclosed service, has limited pickup access, or must move within a narrow window.
         </p>
         <p>
-          Moto Relay requests the details that materially affect transport before providing a price. That gives
+          Our{" "}
+          <Link href="/motorcycle-shipping" className="font-semibold text-accent hover:underline">
+            door-to-door motorcycle shipping service
+          </Link>{" "}
+          includes open and enclosed options. Moto Relay requests the details that materially affect transport before providing a price. That gives
           you a quote built around your shipment instead of a teaser rate that changes later.
         </p>
       </section>

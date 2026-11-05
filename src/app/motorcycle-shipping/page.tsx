@@ -9,6 +9,20 @@ export const metadata: Metadata = {
   description:
     "Door-to-door motorcycle shipping across the lower 48 states. Open or enclosed transport for running and non-running motorcycles that roll.",
   alternates: { canonical: "/motorcycle-shipping" },
+  openGraph: {
+    type: "website",
+    siteName: "Moto Relay",
+    title: "Motorcycle Shipping: Door-to-Door Transport",
+    description: "Door-to-door motorcycle shipping across the lower 48 states. Open or enclosed transport for running and non-running motorcycles that roll.",
+    url: "/motorcycle-shipping",
+    images: ["/images/moto-relay-social-share.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Motorcycle Shipping: Door-to-Door Transport",
+    description: "Door-to-door motorcycle shipping across the lower 48 states. Open or enclosed transport for running and non-running motorcycles that roll.",
+    images: ["/images/moto-relay-social-share.png"],
+  },
 };
 
 const FAQS = [
@@ -64,6 +78,7 @@ export default function Page() {
 
   return (
     <ContentPageLayout
+      breadcrumbs={[{ name: "Home", href: "/" }, { name: "Motorcycle Shipping", href: "/motorcycle-shipping" }]}
       eyebrow="Shipping Services"
       title="Door-to-Door Motorcycle Shipping"
       intro="Open and enclosed motorcycle transport across the lower 48 United States, quoted for your actual route and motorcycle."
