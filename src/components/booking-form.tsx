@@ -28,7 +28,7 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
   const balance = useMemo(() => {
     const total = Number(data.totalPrice);
     const deposit = Number(data.depositAmount);
-    return Number.isFinite(total) && Number.isFinite(deposit) && total >= deposit ? total - deposit : null;
+    return Number.isFinite(total) && total > 0 && Number.isFinite(deposit) && total >= deposit ? total - deposit : null;
   }, [data.totalPrice, data.depositAmount]);
   const depositDisplay = Number(data.depositAmount).toLocaleString("en-US", { style: "currency", currency: "USD" });
   const paymentLink = getPaymentLink(data.depositAmount);
@@ -73,10 +73,9 @@ export function BookingForm({ initialValues, prepared = false }: { initialValues
     <form noValidate onSubmit={submit} className="space-y-8 rounded-2xl border border-form-border bg-form-surface p-5 text-form-foreground shadow-2xl shadow-black/40 sm:p-8">
       <Section title="Accepted quote">
         <Grid>
-          <Field label="Quote or order number" error={errors.quoteNumber}><input className={inputClass} readOnly={prepared} value={data.quoteNumber} onChange={(e)=>update("quoteNumber",e.target.value)} /></Field>
           <Field label="Accepted total shipment price" error={errors.totalPrice}><input className={inputClass} readOnly={prepared} inputMode="decimal" placeholder="$0.00" value={data.totalPrice} onChange={(e)=>update("totalPrice",e.target.value.replace(/[^0-9.]/g,""))} /></Field>
           <Field label="Deposit amount" error={errors.depositAmount}><input className={inputClass} readOnly={prepared} inputMode="decimal" placeholder="$0.00" value={data.depositAmount} onChange={(e)=>update("depositAmount",e.target.value.replace(/[^0-9.]/g,""))} /></Field>
-          <Field label="Requested pickup date" error={errors.pickupDate}><input className={inputClass} readOnly={prepared} type="date" value={data.pickupDate} onChange={(e)=>update("pickupDate",e.target.value)} /></Field>
+          <Field label="Requested pickup date" error={errors.pickupDate}><input className={inputClass} type="date" value={data.pickupDate} onChange={(e)=>update("pickupDate",e.target.value)} /></Field>
         </Grid>
         {prepared && <p className="mb-4 text-xs font-semibold text-form-muted">These quote details were prepared by Moto Relay. Contact us if anything needs to change.</p>}
         <div className="mt-4 rounded-lg border border-form-border bg-white p-4 text-sm">
