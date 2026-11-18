@@ -60,7 +60,7 @@ export type BookingFormData = {
 export type BookingErrors = Partial<Record<keyof BookingFormData, string>>;
 
 const required: (keyof BookingFormData)[] = [
-  "quoteNumber", "totalPrice", "depositAmount", "pickupDate", "customerName", "customerEmail", "customerPhone",
+  "totalPrice", "depositAmount", "pickupDate", "customerName", "customerEmail", "customerPhone",
   "pickupContact", "pickupAddress", "pickupCity", "pickupState", "pickupZip", "pickupPhone",
   "deliveryContact", "deliveryAddress", "deliveryCity", "deliveryState", "deliveryZip", "deliveryPhone",
   "vehicleOne", "vehicleOneColor", "transportType", "runs", "rolls", "signature", "accepted",
