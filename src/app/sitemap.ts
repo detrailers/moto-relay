@@ -1,38 +1,17 @@
 import type { MetadataRoute } from "next";
 import { site, ROUTES } from "@/lib/site";
 
-const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {
-  "/": "2026-10-21",
-  "/open-vs-enclosed-motorcycle-transport": "2026-10-21",
-  "/motorcycle-shipping": "2026-11-05",
-  "/atv-shipping": "2026-09-07",
-  "/utv-shipping": "2026-09-07",
-  "/trike-shipping": "2026-09-07",
-  "/comparing-motorcycle-shipping-quotes": "2026-10-21",
-  "/motorcycle-shipping-cost": "2026-11-05",
-  "/prepare-motorcycle-for-shipping": "2026-10-21",
-  "/motorcycle-shipping-faq": "2026-10-21",
-  "/motorcycle-shipping-buyers-guide": "2026-10-21",
-  "/door-to-door-vs-depot-motorcycle-transport": "2026-10-21",
-  "/non-running-motorcycle-shipping": "2026-10-21",
-  "/classic-custom-restored-motorcycle-shipping": "2026-10-21",
-  "/motorcycle-shipping-after-online-purchase-auction": "2026-10-21",
-  "/cross-country-motorcycle-shipping": "2026-10-21",
-  "/motorcycle-shipping-insurance": "2026-10-21",
-  "/motorcycle-shipping-guides": "2026-10-21",
-  "/how-it-works": "2026-09-07",
-  "/about": "2026-09-08",
-  "/recent-transports": "2026-09-09",
-  "/recent-transports/1974-suzuki-gt750-corinth-to-glendale": "2026-09-09",
-  "/recent-transports/honda-vfr-st-louis-to-new-york": "2026-09-11",
-  "/quote": "2026-09-19",
-  "/privacy": "2026-09-07",
-};
+// Every route's <title> suffix and footer links changed on 2026-11-21, so all
+// routes share that date. When a single page changes later, add it to
+// LAST_MODIFIED with its own date so search engines see an accurate <lastmod>.
+const SITEWIDE_UPDATE = "2026-11-21";
+
+const LAST_MODIFIED: Partial<Record<(typeof ROUTES)[number], string>> = {};
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return ROUTES.map((path) => ({
     url: `${site.url}${path}`,
-    lastModified: new Date(LAST_MODIFIED[path] ?? "2026-08-31"),
+    lastModified: new Date(LAST_MODIFIED[path] ?? SITEWIDE_UPDATE),
     changeFrequency: "monthly" as const,
   }));
 }
