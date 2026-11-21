@@ -17,10 +17,10 @@ export function Wordmark({
   priority?: boolean;
 }) {
   return (
-    <Link href="/" className={cn("shrink-0", className)} aria-label={`${site.name} home`}>
+    <Link href="/" className={cn("shrink-0", className)} aria-label={`${site.name} motorcycle shipping home`}>
       <Image
         src="/images/moto-relay-logo.png"
-        alt="Moto Relay by Texas Moto Worx"
+        alt="Moto Relay motorcycle transport by Texas Moto Worx"
         width={1746}
         height={901}
         loading={priority ? "eager" : "lazy"}

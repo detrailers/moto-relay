@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { ContentPageLayout } from "@/components/content-page-layout";
+import { RelatedGuides } from "@/components/related-guides";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -216,6 +217,16 @@ export default function Page() {
         <p>Send the route, finished dimensions, condition, and transport preference for a shipment-specific quote.</p>
         <Button href="/quote">Request My Trike Shipping Quote</Button>
       </div>
+      <RelatedGuides
+        routes={[
+          "/motorcycle-shipping",
+          "/motorcycle-shipping-cost",
+          "/open-vs-enclosed-motorcycle-transport",
+          "/prepare-motorcycle-for-shipping",
+          "/how-it-works",
+          "/motorcycle-shipping-faq",
+        ]}
+      />
     </ContentPageLayout>
   );
 }

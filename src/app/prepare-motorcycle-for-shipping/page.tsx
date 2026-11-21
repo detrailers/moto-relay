@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { ContentPageLayout } from "@/components/content-page-layout";
+import { RelatedGuides } from "@/components/related-guides";
 
 export const metadata: Metadata = {
   title: "How to Prepare a Motorcycle for Shipping",
@@ -180,6 +181,16 @@ export default function Page() {
         <p>Ready to plan your shipment? Send Moto Relay the route, motorcycle, and timing details.</p>
         <Button href="/quote">Request My Motorcycle Shipping Quote</Button>
       </div>
+      <RelatedGuides
+        routes={[
+          "/motorcycle-shipping",
+          "/motorcycle-shipping-insurance",
+          "/non-running-motorcycle-shipping",
+          "/door-to-door-vs-depot-motorcycle-transport",
+          "/motorcycle-shipping-cost",
+          "/motorcycle-shipping-faq",
+        ]}
+      />
     </ContentPageLayout>
   );
 }

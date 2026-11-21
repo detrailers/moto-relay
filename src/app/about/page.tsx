@@ -5,7 +5,7 @@ import { ContentPageLayout } from "@/components/content-page-layout";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Moto Relay",
+  title: "About Us: Motorcycle & Powersports Shipping",
   description:
     "Moto Relay is owned and operated by Texas Moto Worx and backed by 22 years of transport experience serving motorcycle and powersports customers.",
   alternates: { canonical: "/about" },

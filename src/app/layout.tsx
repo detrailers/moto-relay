@@ -6,7 +6,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { AnalyticsEvents } from "@/components/analytics-events";
-import { site } from "@/lib/site";
+import { brandWithService, site } from "@/lib/site";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const oswald = Oswald({ variable: "--font-oswald", subsets: ["latin"], weight: ["500", "600", "700"] });
@@ -18,6 +18,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   "@id": `${site.url}/#organization`,
   name: site.name,
+  alternateName: brandWithService,
   url: site.url,
   logo: `${site.url}/images/moto-relay-logo.png`,
   description: site.description,
@@ -28,6 +29,14 @@ const organizationJsonLd = {
     "@type": "Organization",
     name: site.parentCompany,
   },
+  knowsAbout: [
+    "Motorcycle shipping",
+    "Motorcycle transport",
+    "ATV shipping",
+    "UTV shipping",
+    "Trike shipping",
+    "Enclosed motorcycle transport",
+  ],
   sameAs: [site.facebook],
   contactPoint: {
     "@type": "ContactPoint",
@@ -42,6 +51,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: site.name,
+  alternateName: brandWithService,
   url: site.url,
   publisher: { "@id": `${site.url}/#organization` },
 };
@@ -52,7 +62,7 @@ export const metadata: Metadata = {
     // Used only when a page doesn't set its own title (shouldn't normally
     // happen — every route in this project sets one explicitly).
     default: `${site.name} — ${site.positioning}`,
-    template: `%s | ${site.name}`,
+    template: `%s | ${brandWithService}`,
   },
   description: site.description,
   openGraph: {
