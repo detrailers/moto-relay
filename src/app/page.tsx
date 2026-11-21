@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const VEHICLES: Record<string, { src: string; label: string }> = {
-  "motorcycle-shipping": { src: "/images/homepage/motorcycle.png", label: "Motorcycles" },
-  "atv-shipping": { src: "/images/homepage/atv.png", label: "ATVs" },
-  "utv-shipping": { src: "/images/homepage/utv.png", label: "UTVs" },
-  "trike-shipping": { src: "/images/homepage/trike.png", label: "Trikes" },
+const VEHICLES: Record<string, { src: string; label: string; alt: string }> = {
+  "motorcycle-shipping": { src: "/images/homepage/motorcycle.png", label: "Motorcycles", alt: "Motorcycle shipping" },
+  "atv-shipping": { src: "/images/homepage/atv.png", label: "ATVs", alt: "ATV shipping" },
+  "utv-shipping": { src: "/images/homepage/utv.png", label: "UTVs", alt: "UTV and side-by-side shipping" },
+  "trike-shipping": { src: "/images/homepage/trike.png", label: "Trikes", alt: "Trike shipping" },
 };
 
 const TRUST = [
@@ -120,16 +120,22 @@ export default function HomePage() {
             </p>
             <div className="flex flex-wrap gap-x-6 gap-y-3 pt-2 text-sm font-black uppercase tracking-wide">
               <Link href="/door-to-door-vs-depot-motorcycle-transport" className="text-accent hover:text-white">
-                Why door-to-door →
+                Why door-to-door motorcycle transport →
               </Link>
               <Link href="/motorcycle-shipping-cost" className="text-accent hover:text-white">
-                How pricing works →
+                Motorcycle shipping cost factors →
               </Link>
               <Link href="/how-it-works" className="text-accent hover:text-white">
-                See the full process →
+                How motorcycle shipping works →
               </Link>
               <Link href="/motorcycle-shipping-guides" className="text-accent hover:text-white">
-                Browse shipping guides →
+                All motorcycle shipping guides →
+              </Link>
+              <Link href="/cross-country-motorcycle-shipping" className="text-accent hover:text-white">
+                Cross-country motorcycle shipping →
+              </Link>
+              <Link href="/recent-transports" className="text-accent hover:text-white">
+                Recent motorcycle transports →
               </Link>
             </div>
           </div>
@@ -143,14 +149,14 @@ export default function HomePage() {
               <p className="text-xs font-black uppercase tracking-[.25em] text-[#ad3d00]">What we move</p>
               <h2 className="mt-2 font-heading text-4xl font-black uppercase leading-none sm:text-6xl">Vehicles We Ship</h2>
             </div>
-            <Link href="/motorcycle-shipping" className="hidden text-sm font-black uppercase tracking-wide text-[#121315] sm:block">Explore services <span className="text-accent">→</span></Link>
+            <Link href="/motorcycle-shipping" className="hidden text-sm font-black uppercase tracking-wide text-[#121315] sm:block">Explore motorcycle shipping <span className="text-accent">→</span></Link>
           </div>
           <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
             {VEHICLE_TYPES.map((vehicle) => {
               const card = VEHICLES[vehicle.slug];
               return (
                 <Link key={vehicle.slug} href={`/${vehicle.slug}`} className="group relative aspect-[4/3] overflow-hidden bg-black">
-                  <Image src={card.src} alt={card.label} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                  <Image src={card.src} alt={card.alt} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 border-b-4 border-accent p-4 sm:p-5">
                     <p className="font-heading text-xl font-black uppercase text-white sm:text-2xl">{card.label}</p>
@@ -171,7 +177,7 @@ export default function HomePage() {
             <h2 className="mt-2 font-heading text-4xl font-black uppercase leading-[.95] text-white sm:text-6xl">Motorcycle People.<br /><span className="text-white/55">Not Just a Shipping Website.</span></h2>
           </div>
           <div className="flex justify-start lg:justify-end">
-            <Image src="/images/moto-relay-logo.png" alt="Moto Relay by Texas Moto Worx" width={1746} height={901} sizes="(max-width: 400px) 90vw, 360px" className="h-auto w-full max-w-[360px]" />
+            <Image src="/images/moto-relay-logo.png" alt="Moto Relay motorcycle transport by Texas Moto Worx" width={1746} height={901} sizes="(max-width: 400px) 90vw, 360px" className="h-auto w-full max-w-[360px]" />
           </div>
         </div>
       </section>
@@ -184,14 +190,14 @@ export default function HomePage() {
               <p className="text-xs font-black uppercase tracking-[.25em] text-accent">Flexible & efficient</p>
               <h3 className="mt-3 font-heading text-5xl font-black uppercase text-white">Open Transport</h3>
               <p className="mt-5 max-w-md text-white/60">A practical shipping option for motorcycles and powersports vehicles.</p>
-              <span className="absolute bottom-8 left-8 font-black uppercase tracking-wide text-accent">Learn more →</span>
+              <span className="absolute bottom-8 left-8 font-black uppercase tracking-wide text-accent">Open motorcycle transport →</span>
             </Link>
             <Link href="/open-vs-enclosed-motorcycle-transport" className="group relative min-h-64 overflow-hidden border border-white/10 bg-[#15171a] p-8">
               <div className="absolute -right-20 -top-20 size-64 rounded-full bg-accent/10 blur-3xl transition group-hover:bg-accent/20" />
               <p className="text-xs font-black uppercase tracking-[.25em] text-accent">Added protection</p>
               <h3 className="mt-3 font-heading text-5xl font-black uppercase text-white">Enclosed Transport</h3>
               <p className="mt-5 max-w-md text-white/60">Protection from the road and weather during transport.</p>
-              <span className="absolute bottom-8 left-8 font-black uppercase tracking-wide text-accent">Learn more →</span>
+              <span className="absolute bottom-8 left-8 font-black uppercase tracking-wide text-accent">Enclosed motorcycle transport →</span>
             </Link>
           </div>
         </div>

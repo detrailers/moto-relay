@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPageLayout } from "@/components/content-page-layout";
+import { RelatedGuides } from "@/components/related-guides";
 import { Button } from "@/components/button";
 import { site } from "@/lib/site";
 
@@ -261,6 +262,16 @@ export default function Page() {
       <div className="pt-2">
         <Button href="/quote">Request a Door-to-Door Quote</Button>
       </div>
+      <RelatedGuides
+        routes={[
+          "/motorcycle-shipping",
+          "/open-vs-enclosed-motorcycle-transport",
+          "/motorcycle-shipping-after-online-purchase-auction",
+          "/prepare-motorcycle-for-shipping",
+          "/motorcycle-shipping-insurance",
+          "/motorcycle-shipping-buyers-guide",
+        ]}
+      />
     </ContentPageLayout>
   );
 }

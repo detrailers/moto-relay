@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { ContentPageLayout } from "@/components/content-page-layout";
+import { RelatedGuides } from "@/components/related-guides";
 import { site } from "@/lib/site";
 
 const path = "/motorcycle-shipping-insurance";
@@ -253,6 +254,16 @@ export default function Page() {
         </p>
         <Button href="/quote">Request My Motorcycle Shipping Quote</Button>
       </div>
+      <RelatedGuides
+        routes={[
+          "/motorcycle-shipping",
+          "/comparing-motorcycle-shipping-quotes",
+          "/open-vs-enclosed-motorcycle-transport",
+          "/classic-custom-restored-motorcycle-shipping",
+          "/motorcycle-shipping-cost",
+          "/motorcycle-shipping-faq",
+        ]}
+      />
     </ContentPageLayout>
   );
 }

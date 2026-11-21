@@ -1,6 +1,19 @@
 import Link from "next/link";
-import { site, primaryNav, VEHICLE_TYPES } from "@/lib/site";
+import { site, primaryNav, VEHICLE_TYPES, GUIDE_LINKS, type GuideRoute } from "@/lib/site";
 import { Wordmark } from "@/components/wordmark";
+
+const FOOTER_GUIDES: GuideRoute[] = [
+  "/motorcycle-shipping-cost",
+  "/open-vs-enclosed-motorcycle-transport",
+  "/door-to-door-vs-depot-motorcycle-transport",
+  "/cross-country-motorcycle-shipping",
+  "/non-running-motorcycle-shipping",
+  "/classic-custom-restored-motorcycle-shipping",
+  "/motorcycle-shipping-after-online-purchase-auction",
+  "/motorcycle-shipping-insurance",
+  "/prepare-motorcycle-for-shipping",
+  "/motorcycle-shipping-buyers-guide",
+];
 
 export function SiteFooter() {
   return (
@@ -44,54 +57,16 @@ export function SiteFooter() {
               <li><Link href="/comparing-motorcycle-shipping-quotes" className="font-semibold text-accent hover:underline">Comparing prices? Here’s what to ask before booking.</Link></li>
               <li>
                 <Link href="/motorcycle-shipping-guides" className="font-semibold text-accent hover:underline">
-                  View All Shipping Guides
+                  View All Motorcycle Shipping Guides
                 </Link>
               </li>
-              <li>
-                <Link href="/non-running-motorcycle-shipping" className="text-sm text-foreground hover:text-accent">
-                  Non-Running Motorcycles
-                </Link>
-              </li>
-              <li>
-                <Link href="/classic-custom-restored-motorcycle-shipping" className="text-sm text-foreground hover:text-accent">
-                  Classic &amp; Custom Motorcycles
-                </Link>
-              </li>
-              <li>
-                <Link href="/motorcycle-shipping-after-online-purchase-auction" className="text-sm text-foreground hover:text-accent">
-                  Online Purchase &amp; Auction
-                </Link>
-              </li>
-              <li>
-                <Link href="/cross-country-motorcycle-shipping" className="text-sm text-foreground hover:text-accent">
-                  Cross-Country Shipping
-                </Link>
-              </li>
-              <li>
-                <Link href="/motorcycle-shipping-insurance" className="text-sm text-foreground hover:text-accent">
-                  Shipping Insurance Guide
-                </Link>
-              </li>
-              <li>
-                <Link href="/door-to-door-vs-depot-motorcycle-transport" className="text-sm text-foreground hover:text-accent">
-                  Door-to-Door vs. Depot
-                </Link>
-              </li>
-              <li>
-                <Link href="/open-vs-enclosed-motorcycle-transport" className="text-sm text-foreground hover:text-accent">
-                  Open vs. Enclosed
-                </Link>
-              </li>
-              <li>
-                <Link href="/motorcycle-shipping-cost" className="text-sm text-foreground hover:text-accent">
-                  Shipping Cost Factors
-                </Link>
-              </li>
-              <li>
-                <Link href="/prepare-motorcycle-for-shipping" className="text-sm text-foreground hover:text-accent">
-                  Prepare Your Motorcycle
-                </Link>
-              </li>
+              {FOOTER_GUIDES.map((href) => (
+                <li key={href}>
+                  <Link href={href} className="text-sm text-foreground hover:text-accent">
+                    {GUIDE_LINKS[href]}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -133,7 +108,7 @@ export function SiteFooter() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
-            &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {site.name} motorcycle &amp; powersports transport. All rights reserved.
           </p>
           <p>{site.domain}</p>
         </div>

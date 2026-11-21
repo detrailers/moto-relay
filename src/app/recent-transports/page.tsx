@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/button";
 import { ContentPageLayout } from "@/components/content-page-layout";
+import { RelatedGuides } from "@/components/related-guides";
 
 export const metadata: Metadata = {
   title: "Recent Motorcycle & Powersports Transports",
@@ -73,6 +74,16 @@ export default function Page() {
         <p>Have a restored, collector, or unusual motorcycle to move? Tell us about the vehicle and route.</p>
         <Button href="/quote">Request My Shipping Quote</Button>
       </div>
+      <RelatedGuides
+        routes={[
+          "/motorcycle-shipping",
+          "/classic-custom-restored-motorcycle-shipping",
+          "/cross-country-motorcycle-shipping",
+          "/motorcycle-shipping-insurance",
+          "/open-vs-enclosed-motorcycle-transport",
+          "/motorcycle-shipping-cost",
+        ]}
+      />
     </ContentPageLayout>
   );
 }

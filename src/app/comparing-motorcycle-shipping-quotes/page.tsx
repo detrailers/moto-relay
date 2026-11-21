@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPageLayout } from "@/components/content-page-layout";
+import { RelatedGuides } from "@/components/related-guides";
 import { Button } from "@/components/button";
 
 const title = "What Makes a Motorcycle Shipping Quote Realistic?";
@@ -28,6 +29,16 @@ export default function Page() {
         <Button href="/quote">Request My Shipping Quote</Button>
         <p>For more detail, read our <Link href="/motorcycle-shipping-cost" className="font-semibold text-accent hover:underline">shipping cost guide</Link> or explore <Link href="/motorcycle-shipping-guides" className="font-semibold text-accent hover:underline">all shipping guides</Link>.</p>
       </section>
+      <RelatedGuides
+        routes={[
+          "/motorcycle-shipping",
+          "/motorcycle-shipping-buyers-guide",
+          "/motorcycle-shipping-insurance",
+          "/door-to-door-vs-depot-motorcycle-transport",
+          "/open-vs-enclosed-motorcycle-transport",
+          "/how-it-works",
+        ]}
+      />
     </ContentPageLayout>
   );
 }

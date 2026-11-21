@@ -25,6 +25,37 @@ export const site = {
   facebook: "https://www.facebook.com/profile.php?id=61593979203454",
 };
 
+// Longer brand form used for the page-title suffix and as the schema.org
+// alternateName. Pairing "Relay" with "Transport" (it matches the domain)
+// keeps search engines from confusing the brand with electrical relay parts.
+export const brandWithService = "Moto Relay Transport";
+
+// Descriptive anchor text for internal links to guide and service pages.
+// Used by <RelatedGuides> and the footer so links name the actual topic.
+export const GUIDE_LINKS = {
+  "/motorcycle-shipping": "Door-to-door motorcycle shipping",
+  "/atv-shipping": "ATV shipping",
+  "/utv-shipping": "UTV and side-by-side shipping",
+  "/trike-shipping": "Trike shipping",
+  "/motorcycle-shipping-cost": "Motorcycle shipping cost factors",
+  "/comparing-motorcycle-shipping-quotes": "Comparing motorcycle shipping quotes",
+  "/open-vs-enclosed-motorcycle-transport": "Open vs. enclosed motorcycle transport",
+  "/door-to-door-vs-depot-motorcycle-transport": "Door-to-door vs. depot motorcycle transport",
+  "/non-running-motorcycle-shipping": "Non-running motorcycle shipping",
+  "/classic-custom-restored-motorcycle-shipping": "Classic and custom motorcycle shipping",
+  "/motorcycle-shipping-after-online-purchase-auction": "Shipping a motorcycle bought online or at auction",
+  "/cross-country-motorcycle-shipping": "Cross-country motorcycle shipping",
+  "/motorcycle-shipping-insurance": "Motorcycle shipping insurance",
+  "/prepare-motorcycle-for-shipping": "How to prepare a motorcycle for shipping",
+  "/motorcycle-shipping-buyers-guide": "How to choose a motorcycle shipping company",
+  "/motorcycle-shipping-faq": "Motorcycle shipping FAQ",
+  "/how-it-works": "How motorcycle shipping works",
+  "/recent-transports": "Recent motorcycle transports",
+  "/motorcycle-shipping-guides": "All motorcycle shipping guides",
+} as const;
+
+export type GuideRoute = keyof typeof GUIDE_LINKS;
+
 export type VehicleType = {
   slug: string;
   label: string;
